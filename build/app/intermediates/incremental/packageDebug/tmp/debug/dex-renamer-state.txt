@@ -1,0 +1,4 @@
+#Mon Aug 08 20:02:11 EEST 2022
+base.0=C\:\\Users\\chick61\\source\\repos\\FlutterProjects\\Sha3-er-main\\Sha3-er-main\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+renamed.0=classes.dex
+path.0=classes.dex
