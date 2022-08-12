@@ -3,7 +3,7 @@ import 'package:shagher/language/generated/key_lang.dart';
 import 'package:shagher/packages/pages/home/components/drawer/lang/alert_lang.dart';
 import 'package:shagher/packages/pages/home/components/drawer/listtile_drawer.dart';
 import 'package:shagher/service/theme/app_theme.dart';
-import 'package:shagher/util/path_svg.dart';
+//import 'package:shagher/util/path_svg.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class SettingsDrawer extends StatelessWidget {
