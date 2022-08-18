@@ -17,8 +17,10 @@ class AppColors {
   static const Color lightLoading = Color.fromARGB(255, 252, 252, 252);
   static const Color darkLoading = Color.fromARGB(255, 80, 80, 80);
 
+  //static final Color primary = _colorFromHex('#ABDBE3');
   static final Color primary = _colorFromHex('#58c8ff');
   static final Color primarybg = _colorFromHex('#FFF1F4F8');
+  static final Color secondary = _colorFromHex('#58c8ff');
   static final Color blueDetailsBG = _colorFromHex('#a2e7f5');
   static final Color darkMode = _colorFromHex('#3A3B3C');
   static final Color darkModeCardDetails = _colorFromHex('#484848');
@@ -30,6 +32,7 @@ class AppColors {
   static final Color lightModeToast = _colorFromHex('#90ee02');
   static final Color darkModeToast = _colorFromHex('#BB86FC');
   static final Color mb = _colorFromHex('#FF0266');
+  static final Color ceriseRed = _colorFromHex('#E1306C');
 
   static final Color red = _colorFromHex('#B71c1c');
   static final Color orange = _colorFromHex('#F57C00');

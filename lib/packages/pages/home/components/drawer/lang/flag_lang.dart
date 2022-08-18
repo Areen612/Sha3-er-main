@@ -30,7 +30,7 @@ class FlagLang extends StatelessWidget {
             Navigator.pop(context);
           } else {
             await EasyLocalization.of(context)?.setLocale(_locale);
-            RestartApp.restartApp(context);
+            RestartWidget.restartApp(context);
           }
         },
         child: Row(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shagher/packages/pages/auth/view/wrapper.dart';
 import 'package:shagher/packages/pages/tour/componets/tour_card.dart';
 import 'package:shagher/themes/app_colors.dart';
 import 'package:shagher/util/path_images.dart';
@@ -34,17 +35,17 @@ class _TourWidgetState extends State<TourWidget> {
                 //todo texts and tr()
                 children: const <Widget>[
                   TourCard(
-                      image: PathImages.appLogo,
+                      image: PathImages.tourTwo,
                       title: 'Header One',
                       subtitle:
                           'Lorem ipsum dolor sit amet, consectetur\nadipiscing elit, sed do eiusmod tempor\nincididunt ut labore et dolore magna aliqua. '),
                   TourCard(
-                      image: PathImages.appLogo,
+                      image: PathImages.tourFive,
                       title: 'Header Two',
                       subtitle:
                           'Lorem ipsum dolor sit amet, consectetur\nadipiscing elit, sed do eiusmod tempor\nincididunt ut labore et dolore magna aliqua. '),
                   TourCard(
-                      image: PathImages.appLogo,
+                      image: PathImages.tourFour,
                       title: 'Header Three',
                       subtitle:
                           'Lorem ipsum dolor sit amet, consectetur\nadipiscing elit, sed do eiusmod tempor\nincididunt ut labore et dolore magna aliqua. '),
@@ -73,7 +74,7 @@ class _TourWidgetState extends State<TourWidget> {
             ElevatedBtn(
               title: 'Get started',
               onTap: () {
-                Navigator.pushReplacementNamed(context, HomeWidget.id);
+                Navigator.pushReplacementNamed(context, Wrapper.id);
               },
               width: 300,
             ),

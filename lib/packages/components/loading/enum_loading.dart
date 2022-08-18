@@ -1,1 +1,7 @@
-enum ChooseLoading { profile, appLogo, page, webView }
+enum ChooseLoading {
+  profile,
+  appLogo,
+  page,
+  webView,
+  button,
+}

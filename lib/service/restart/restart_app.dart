@@ -1,34 +1,32 @@
-//import 'dart:js';
-
 import 'package:flutter/material.dart';
 
-class RestartApp extends StatefulWidget {
-  const RestartApp({Key? key, required Widget child})
-      : _child = child,
-        super(key: key);
+class RestartWidget extends StatefulWidget {
+  const RestartWidget({
+    Key? key,
+    required this.child,
+  }) : super(key: key);
 
-  final Widget _child;
+  final Widget child;
+
   static void restartApp(BuildContext context) {
-    context.findAncestorStateOfType<_ResartAppState>()!.restartApp();
+    context.findAncestorStateOfType<_RestartWidgetState>()?.restartApp();
   }
 
   @override
-  State<RestartApp> createState() => _ResartAppState();
+  _RestartWidgetState createState() => _RestartWidgetState();
 }
 
-class _ResartAppState extends State<RestartApp> {
-  Key _key = UniqueKey();
+class _RestartWidgetState extends State<RestartWidget> {
+  Key key = UniqueKey();
+
   void restartApp() {
     setState(() {
-      _key = UniqueKey();
+      key = UniqueKey();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return KeyedSubtree(
-      key: _key,
-      child: widget._child,
-    );
+    return KeyedSubtree(key: key, child: widget.child);
   }
 }

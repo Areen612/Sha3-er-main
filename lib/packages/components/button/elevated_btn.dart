@@ -32,7 +32,7 @@ class ElevatedBtn extends StatelessWidget {
     return ElevatedButton(
         onPressed: _onTap,
         style: ElevatedButton.styleFrom(
-            primary: AppColors.primary,
+            primary: AppColors.black,
             onPrimary: AppColors.cardClick,
             fixedSize: Size.fromWidth(_width.w),
             padding: const EdgeInsets.all(16)),

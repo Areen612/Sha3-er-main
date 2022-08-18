@@ -25,7 +25,7 @@ class _HomeWidgetState extends State<HomeWidget> {
     return Scaffold(
       appBar: const AppBarHome(),
       body: _widgetOptions[_selectedIndex],
-      drawer: const BodyDrawer(),
+      drawer: const DrawerBody(),
       bottomNavigationBar: NavBar(
         selectedIndex: _selectedIndex,
         onClick: (calledIndex) {

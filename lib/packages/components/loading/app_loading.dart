@@ -45,6 +45,19 @@ class AppLoading extends StatelessWidget {
           size: _size.w,
           color: _colorLoading,
         );
+      case ChooseLoading.button:
+        return SpinKitFadingCircle(
+          itemBuilder: (_, __) {
+            return DecoratedBox(
+              decoration: BoxDecoration(
+                color: AppColors.primary,
+                //gradient: LinearGradient(colors: AppColors.btnColor),
+                shape: BoxShape.circle,
+              ),
+            );
+          },
+          size: _size.sp,
+        );
     }
   }
 }

@@ -6,7 +6,7 @@ class ModelListUser {
 
   ModelListUser({this.user});
 
-  ModelListUser.fromJson(Map<String, dynamic> json) {
+  ModelListUser.fromJson({required Map<String, dynamic> json}) {
     if (json[KeyApi.user] != null) {
       user = <ModelUser>[];
       json[KeyApi.user].forEach(

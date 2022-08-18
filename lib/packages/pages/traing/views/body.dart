@@ -29,7 +29,7 @@ class _TrainingPageState extends State<TrainingWidget> {
       child: Scaffold(
         appBar: const AppBarTraining(),
         body: TabBarView(children: _pages),
-        drawer: const BodyDrawer(),
+        drawer: const DrawerBody(),
       ),
     );
   }
