@@ -1,10 +1,11 @@
+import 'dart:ui';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shagher/language/generated/key_lang.dart';
 import 'package:shagher/service/theme/app_theme.dart';
 import 'package:shagher/themes/app_colors.dart';
-import 'package:toggle_switch/toggle_switch.dart';
 
 // class DropDownList extends StatefulWidget {
 //   const DropDownList({Key? key, void Function(String)? onChanged})
@@ -53,60 +54,52 @@ import 'package:toggle_switch/toggle_switch.dart';
 //     );
 //   }
 // }
-
+// * TODO Tabs
 class ToggleSwitchCompany extends StatefulWidget {
-  const ToggleSwitchCompany({Key? key, void Function(int)? onToggle})
-      : _onToggle = onToggle,
+  const ToggleSwitchCompany({Key? key, void Function(int)? onSelected})
+      : _onSelected = onSelected,
         super(key: key);
 
   @override
   State<ToggleSwitchCompany> createState() => _ToggleSwitchCompanyState();
-  final void Function(int)? _onToggle;
+  final void Function(int)? _onSelected;
 }
 
 class _ToggleSwitchCompanyState extends State<ToggleSwitchCompany> {
-  final List<bool> isSelected = List.generate(2, (_) => false);
+  final List<bool> _isSelected = [true, false];
   @override
   Widget build(BuildContext context) {
-    return ToggleSwitch(
-      initialLabelIndex: 0,
-      totalSwitches: 2,
-      minWidth: 159.w,
-      minHeight: 40.h,
-      fontSize: 16.sp,
-      //borderColor: [AppColors.primary, AppColors.primary],
-      activeBgColor: const [Colors.black],
-      activeFgColor: AppColors.white,
-      inactiveBgColor: AppColors.white,
-      inactiveFgColor: AppColors.black,
-      labels: [KeyLang.user.tr(), KeyLang.company.tr()],
-      onToggle: (index) {
-        widget._onToggle!(index!);
-      },
+    return SizedBox(
+      // ignore: avoid_unnecessary_containers
+      width: 320.w,
+      height: 40.h,
+      child: LayoutBuilder(builder: (context, constraints) {
+        return ToggleButtons(
+          //color: AppTheme.isDark(context) ? AppColors.bgWhite : AppColors.primary,
+          selectedColor: AppColors.white,
+          fillColor: AppColors.black,
+          borderColor: AppColors.black,
+          textStyle: AppTheme.h6(context),
+          borderRadius: BorderRadius.circular(5.r),
+          renderBorder: false,
+          constraints: BoxConstraints.expand(width: constraints.maxWidth / 2),
+          children: const <Widget>[
+            Text(KeyLang.user),
+            Text(
+              KeyLang.company,
+            )
+          ],
+          onPressed: (int index) {
+            widget._onSelected!(index);
+            setState(() {
+              for (int i = 0; i < _isSelected.length; i++) {
+                _isSelected[i] = i == index;
+              }
+            });
+          },
+          isSelected: _isSelected,
+        );
+      }),
     );
-    // return ToggleButtons(
-    //   //color: AppTheme.isDark(context) ? AppColors.bgWhite : AppColors.primary,
-
-    //   selectedColor: AppColors.white,
-    //   fillColor: AppColors.primary,
-    //   borderColor: AppColors.primary,
-    //   borderRadius: BorderRadius.circular(5.r),
-
-    //   //constraints: const BoxConstraints.expand(),
-
-    //   children: const <Widget>[
-    //     Text(KeyLang.user),
-    //     Text(
-    //       KeyLang.company,
-    //     )
-    //   ],
-    //   onPressed: (int index) {
-    //     widget._onPressed!(index);
-    //     setState(() {
-    //       isSelected[index] = !isSelected[index];
-    //     });
-    //   },
-    //   isSelected: isSelected,
-    //);
   }
 }

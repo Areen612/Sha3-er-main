@@ -14,14 +14,14 @@ class CustomTheme {
         titleTextStyle: TextStyle(
           color: AppColors.white,
           fontSize: 20.sp,
-          fontFamily: GoogleFonts.lexendDeca().fontFamily, //ToDo change font
+          fontFamily: GoogleFonts.outfit().fontFamily, //ToDo change font
         ),
       ),
       // ToDo tapBarTheme
       textTheme: Theme.of(context).textTheme.apply(
             bodyColor: AppColors.black,
             displayColor: AppColors.black,
-            fontFamily: GoogleFonts.lexendDeca().fontFamily, // ToDo change font
+            fontFamily: GoogleFonts.outfit().fontFamily, // ToDo change font
           ),
     );
   }

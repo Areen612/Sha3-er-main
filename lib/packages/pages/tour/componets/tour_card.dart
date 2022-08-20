@@ -54,13 +54,14 @@ class TourCard extends StatelessWidget {
                       //mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        // TODO rich text
                         Text(
                           _title,
                           style: TextStyle(
                               fontFamily: 'Outfit',
                               color: const Color(0xFF0F1113),
-                              fontSize: 24.sp,
-                              fontWeight: FontWeight.w500),
+                              fontSize: 15.sp,
+                              fontWeight: FontWeight.w600),
                           textAlign: TextAlign.left, //* you added this
                         ),
                         Text(
@@ -68,7 +69,7 @@ class TourCard extends StatelessWidget {
                           style: TextStyle(
                             fontFamily: 'Outfit',
                             color: const Color(0xFF57636C),
-                            fontSize: 14.sp,
+                            fontSize: 12.sp,
                             fontWeight: FontWeight.normal,
                           ),
                         ),

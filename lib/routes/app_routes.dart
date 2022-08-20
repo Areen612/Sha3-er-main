@@ -4,6 +4,7 @@ import 'package:shagher/packages/pages/auth/view/forgot.dart';
 import 'package:shagher/packages/pages/auth/view/login.dart';
 import 'package:shagher/packages/pages/auth/view/register.dart';
 import 'package:shagher/packages/pages/auth/view/wrapper.dart';
+import 'package:shagher/models/post.dart';
 import 'package:shagher/packages/pages/tour/views/body.dart';
 import 'package:shagher/packages/pages/traing/views/body.dart';
 import '../packages/pages/home/views/body.dart';
@@ -18,7 +19,6 @@ class AppRoutes {
     LoginWidget.id: (context) => const LoginWidget(),
     RegisterWidget.id: (context) => const RegisterWidget(),
     ForgotPasswordWidget.id: (context) => const ForgotPasswordWidget(),
-    //PageOrder.id: (context) => const PageOrder(),
     Wrapper.id: (context) => const Wrapper(),
     CvForm.id: (context) => const CvForm(),
   };

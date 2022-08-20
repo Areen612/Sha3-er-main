@@ -1,5 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shagher/language/generated/key_lang.dart';
+import 'package:shagher/packages/components/space/size_box_height.dart';
 import 'package:shagher/packages/pages/auth/view/wrapper.dart';
 import 'package:shagher/packages/pages/tour/componets/tour_card.dart';
 import 'package:shagher/themes/app_colors.dart';
@@ -33,54 +36,45 @@ class _TourWidgetState extends State<TourWidget> {
                 controller: _controller,
                 scrollDirection: Axis.horizontal,
                 //todo texts and tr()
-                children: const <Widget>[
+                children: <Widget>[
                   TourCard(
                       image: PathImages.tourTwo,
-                      title: 'Header One',
+                      title: KeyLang.tourHeaderOne.tr(),
                       subtitle:
                           'Lorem ipsum dolor sit amet, consectetur\nadipiscing elit, sed do eiusmod tempor\nincididunt ut labore et dolore magna aliqua. '),
                   TourCard(
                       image: PathImages.tourFive,
-                      title: 'Header Two',
+                      title: KeyLang.tourHeaderTwo.tr(),
                       subtitle:
                           'Lorem ipsum dolor sit amet, consectetur\nadipiscing elit, sed do eiusmod tempor\nincididunt ut labore et dolore magna aliqua. '),
                   TourCard(
                       image: PathImages.tourFour,
-                      title: 'Header Three',
+                      title: KeyLang.tourHeaderThree.tr(),
                       subtitle:
                           'Lorem ipsum dolor sit amet, consectetur\nadipiscing elit, sed do eiusmod tempor\nincididunt ut labore et dolore magna aliqua. '),
                 ],
               ),
             ),
-            //todo fix this code structure
-            SizedBox(
-              height: 30.h,
-            ),
+            SBH(h: 30.h),
             SmoothPageIndicator(
               controller: _controller,
               count: 3,
               effect: SwapEffect(
-                //offset: 8.0,
                 dotWidth: 12.w,
                 dotHeight: 12.h,
                 activeDotColor: AppColors.black,
                 dotColor: AppColors.grey,
               ),
             ),
-            //todo change to spacer
-            SizedBox(
-              height: 20.h,
-            ),
+            SBH(h: 20.h),
             ElevatedBtn(
-              title: 'Get started',
+              title: KeyLang.getStarted.tr(),
               onTap: () {
                 Navigator.pushReplacementNamed(context, Wrapper.id);
               },
               width: 300,
             ),
-            SizedBox(
-              height: 40.h,
-            )
+            SBH(h: 40.h),
           ],
         ),
       ),

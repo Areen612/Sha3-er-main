@@ -61,7 +61,11 @@ class PathIcons {
     color: AppColors.black,
   );
   static FaIcon file = const FaIcon(
-    FontAwesomeIcons.file,
+    FontAwesomeIcons.fileAlt,
+    color: AppColors.black,
+  );
+  static FaIcon phone = const FaIcon(
+    FontAwesomeIcons.phone,
     color: AppColors.black,
   );
   static const String language = 'assets/icons/language.svg';

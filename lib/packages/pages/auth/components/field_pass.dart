@@ -13,11 +13,13 @@ class FieldPass extends StatefulWidget {
     void Function(String? value)? valuePass,
     String? Function(String?)? onValidators = AppValidators.isPass,
     void Function(String)? onChanged,
-    String hint = KeyLang.pass,
+    String? hint,
+    String? helperText,
   })  : _valuePass = valuePass,
         _onValidators = onValidators,
         _onChanged = onChanged,
         _hint = hint,
+        _helperText = helperText,
         super(key: key);
 
   @override
@@ -25,7 +27,8 @@ class FieldPass extends StatefulWidget {
   final void Function(String? value)? _valuePass;
   final String? Function(String?)? _onValidators;
   final void Function(String)? _onChanged;
-  final String _hint;
+  final String? _hint;
+  final String? _helperText;
 }
 
 class _FieldPassState extends State<FieldPass> {
@@ -35,7 +38,9 @@ class _FieldPassState extends State<FieldPass> {
   @override
   Widget build(BuildContext context) {
     return CustomField(
-      hint: widget._hint.tr(),
+      hint: widget._hint?.tr(),
+      labelText: KeyLang.pass.tr(),
+      helperText: widget._helperText?.tr(),
       isObscureText: _obscureText,
       pIcon: PathIcons.passIcon,
       sIcon: Padding(

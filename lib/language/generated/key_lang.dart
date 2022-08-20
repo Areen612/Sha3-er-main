@@ -1,11 +1,16 @@
 class KeyLang {
   // * tour
-
+  static const String getStarted = 'getStarted';
+  static const String tourHeaderOne = 'tourHeaderOne';
+  static const String tourSubtitleOne = 'tourSubtitleOne';
+  static const String tourHeaderTwo = 'tourHeaderTwo';
+  static const String tourHeaderThree = 'tourHeaderThree';
   // * app
   static const String user = 'user';
   static const String company = 'company';
   static const String appName = 'appName';
   static const String welcomeMessage = 'welcomeMessage';
+  static const String uploadCv = 'uploadCv';
   static const String userName = 'userName';
   static const String userProfile = 'userProfile';
   static const String termsAndConditions = 'termsAndConditions';
@@ -16,7 +21,7 @@ class KeyLang {
   static const String forgetpassword = 'forgetpassword';
   static const String createaccount = 'createaccount';
   static const String submit = 'submit';
-  static const String cont = 'continue';
+  static const String cont = 'cont';
   static const String addreview = 'addreview';
   static const String companyname = 'companyname';
   static const String companyaddress = 'companyaddress';

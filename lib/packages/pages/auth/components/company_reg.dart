@@ -1,21 +1,24 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shagher/language/generated/key_lang.dart';
 import 'package:shagher/packages/components/button/simple_btn.dart';
 import 'package:shagher/packages/components/space/size_box_height.dart';
 import 'package:shagher/packages/components/text_field_form/custom_filed.dart';
-import 'package:shagher/packages/pages/auth/components/toggle_switch.dart';
+import 'package:shagher/packages/pages/auth/components/field_city.dart';
+import 'package:shagher/packages/pages/auth/components/field_company_name.dart';
+import 'package:shagher/packages/pages/auth/components/field_country.dart';
+import 'package:shagher/packages/pages/auth/components/field_specialty.dart';
 import 'package:shagher/packages/pages/auth/components/field_email.dart';
 import 'package:shagher/packages/pages/auth/components/field_pass.dart';
-import 'package:shagher/packages/pages/auth/components/header_auth.dart';
-import 'package:shagher/packages/pages/auth/model/user_auth.dart';
+import 'package:shagher/packages/pages/auth/model/company_auth.dart';
 import 'package:shagher/service/validotors/app_validators.dart';
 import 'package:shagher/util/path_icons.dart';
-
 import 'rich_text_auth.dart';
 
 class RegCompanyColumn extends StatelessWidget {
   const RegCompanyColumn({Key? key}) : super(key: key);
-  static final ModelUserAuth _userAuth = ModelUserAuth();
+  static final ModelCompanyAuth _companyAuth = ModelCompanyAuth();
+  static final GlobalKey<FormState> _keyForm = GlobalKey<FormState>();
   // * save pass
   static String? pass;
   static String? flag;
@@ -26,48 +29,55 @@ class RegCompanyColumn extends StatelessWidget {
       children: [
         const SBH(),
         // * Company name
-        CustomField(hint: KeyLang.companyname, pIcon: PathIcons.nameTagIcon),
+
+        FieldCompanyName(valueCompanyName: _companyAuth.setCompanyName),
         const SBH(),
         // * Email
-        FieldEmail(valueEmail: _userAuth.setEmail),
+        FieldEmail(valueEmail: _companyAuth.setEmail),
         const SBH(),
         // * Password
-        FieldPass(onChanged: (value) => pass = value),
+        FieldPass(
+          onChanged: (value) => pass = value,
+          helperText: KeyLang.errorPass,
+        ),
         const SBH(),
         // * Confirm Password
         FieldPass(
-          hint: KeyLang.confirmPass,
           onValidators: (value) => AppValidators.isEqualPass(value, pass ?? ''),
-          valuePass: _userAuth.setPass,
+          valuePass: _companyAuth.setPassword,
         ),
         const SBH(),
         // * Specialty
-        CustomField(hint: KeyLang.specialty, pIcon: PathIcons.company),
+        FieldSpecialty(valueSpecialty: _companyAuth.setSpecialty),
         const SBH(),
         // * Country
-        CustomField(hint: KeyLang.country, pIcon: PathIcons.country),
-        const SBH(),
+        FieldCountry(valueCountry: _companyAuth.setCountry),
         // * City
-        CustomField(hint: KeyLang.city, pIcon: PathIcons.country),
+        FieldCity(valueCity: _companyAuth.setCity),
         const SBH(),
         // * Enterprise Owner
-        CustomField(hint: KeyLang.enterpriseOwner, pIcon: PathIcons.company),
+        CustomField(
+            labelText: KeyLang.enterpriseOwner, pIcon: PathIcons.company),
         const SBH(),
         // * Commercial Address
-        CustomField(hint: KeyLang.commercialAddress, pIcon: PathIcons.company),
+        CustomField(
+            labelText: KeyLang.commercialAddress, pIcon: PathIcons.company),
         const SBH(),
         // * Status
-        CustomField(hint: KeyLang.status, pIcon: PathIcons.company),
+        CustomField(labelText: KeyLang.status, pIcon: PathIcons.company),
         const SBH(),
         // * National Invester Number
         CustomField(
-            hint: KeyLang.nationalInvestorNumber, pIcon: PathIcons.company),
+            labelText: KeyLang.nationalInvestorNumber,
+            pIcon: PathIcons.company),
         const SBH(),
         // * Commercial Number
-        CustomField(hint: KeyLang.commercialNumber, pIcon: PathIcons.company),
+        CustomField(
+            labelText: KeyLang.commercialNumber, pIcon: PathIcons.company),
         const SBH(),
         // * Commercial Name
-        CustomField(hint: KeyLang.commercialName, pIcon: PathIcons.company),
+        CustomField(
+            labelText: KeyLang.commercialName, pIcon: PathIcons.company),
         const SBH(h: 20),
         // * button
         Center(
@@ -75,7 +85,12 @@ class RegCompanyColumn extends StatelessWidget {
           // ? const AppLoading(chooseLoading: ChooseLoading.button)
           // :
           child: SimpleBtn(
-            btnTitle: KeyLang.register, onTap: () {},
+            btnTitle: KeyLang.register,
+            onTap: () {
+              if (_keyForm.currentState?.validate() ?? false) {
+                //print('valid');
+              }
+            },
             // onTap: () async {
             //   if (_keyForm.currentState?.validate() ?? false) {
             //     _keyForm.currentState?.save();

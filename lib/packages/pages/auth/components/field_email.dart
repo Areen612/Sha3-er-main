@@ -16,7 +16,8 @@ class FieldEmail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomField(
-      hint: KeyLang.email.tr(),
+      //hint: KeyLang.email.tr(),
+      labelText: KeyLang.email.tr(),
       keyboardType: TextInputType.emailAddress,
       pIcon: PathIcons.emailIcon,
       onValidator: AppValidators.isEmail,

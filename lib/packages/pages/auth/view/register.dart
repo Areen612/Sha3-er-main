@@ -1,6 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:shagher/packages/components/button/simple_btn.dart';
 import 'package:shagher/packages/components/text_field_form/custom_filed.dart';
 import 'package:shagher/packages/pages/auth/components/company_reg.dart';
+import 'package:shagher/packages/pages/auth/components/field_fname.dart';
+import 'package:shagher/packages/pages/auth/components/field_lname.dart';
 import 'package:shagher/packages/pages/auth/components/toggle_switch.dart';
 import 'package:shagher/packages/pages/auth/view/cv.dart';
 import 'package:shagher/packages/pages/home/views/body.dart';
@@ -62,7 +65,7 @@ class _PageRegisterState extends State<RegisterWidget> {
               //     flag = value;
               //   });
               // }),
-              ToggleSwitchCompany(onToggle: (index) {
+              ToggleSwitchCompany(onSelected: (index) {
                 setState(() {
                   flag = index;
                 });
@@ -75,26 +78,23 @@ class _PageRegisterState extends State<RegisterWidget> {
                     const SBH(),
 
                     // * First name
-                    CustomField(
-                      hint: KeyLang.fname,
-                      pIcon: PathIcons.nameTagIcon,
-                    ),
+                    FieldFname(valueFname: RegisterWidget._userAuth.setFname),
                     const SBH(),
                     // * Last name
-                    CustomField(
-                      hint: KeyLang.lname,
-                      pIcon: PathIcons.nameTagIcon,
-                    ),
+                    FieldLname(valueLname: RegisterWidget._userAuth.setLname),
                     const SBH(),
                     // * Email
                     FieldEmail(valueEmail: RegisterWidget._userAuth.setEmail),
                     const SBH(),
                     // * Password
-                    FieldPass(onChanged: (value) => pass = value),
+                    // TODO: tr()
+                    FieldPass(
+                      onChanged: (value) => pass = value,
+                      helperText: KeyLang.errorPass,
+                    ),
                     const SBH(),
                     // * Confirm Password
                     FieldPass(
-                      hint: KeyLang.confirmPass,
                       onValidators: (value) => AppValidators.isEqualPass(
                           value, RegisterWidget.pass ?? ''),
                       valuePass: RegisterWidget._userAuth.setPass,
@@ -108,7 +108,9 @@ class _PageRegisterState extends State<RegisterWidget> {
                       child: SimpleBtn(
                         btnTitle: KeyLang.cont,
                         onTap: () {
-                          Navigator.pushNamed(context, CvForm.id);
+                          if (RegisterWidget._keyForm.currentState
+                                  ?.validate() ??
+                              false) Navigator.pushNamed(context, CvForm.id);
                         },
                         // onTap: () async {
                         //   if (_keyForm.currentState?.validate() ?? false) {

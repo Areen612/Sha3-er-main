@@ -44,10 +44,10 @@ class _PageSplashState extends State<SplashWidget> {
             children: [
               Image(
                 image: const AssetImage(PathImages.appLogo),
-                width: 200.w,
-                height: 200.h,
+                width: 250.w,
+                height: 250.h,
               ),
-              // TODO SvgPicture
+              //  SvgPicture
               // SvgPicture.asset(
               //   PathImages.appLogo,
               //   width: 150.w,
@@ -55,7 +55,7 @@ class _PageSplashState extends State<SplashWidget> {
               // ),
               Text(
                 // TODO welcomeMessage error
-                KeyLang.welcomeMessage,
+                KeyLang.welcomeMessage.tr(),
                 style: AppTheme.h6(context).copyWith(
                   color: AppColors.white,
                   fontWeight: FontWeight.bold,

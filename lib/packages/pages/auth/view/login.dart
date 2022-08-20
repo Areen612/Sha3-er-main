@@ -57,7 +57,12 @@ class LoginWidget extends StatelessWidget {
                 // ? const AppLoading(chooseLoading: ChooseLoading.button)
                 // :
                 child: SimpleBtn(
-                  btnTitle: KeyLang.login, onTap: () {},
+                  btnTitle: KeyLang.login,
+                  onTap: () {
+                    if (_keyForm.currentState?.validate() ?? false) {
+                      print('valid');
+                    }
+                  },
                   // onTap: () async {
                   //   if (_keyForm.currentState?.validate() ?? false) {
                   //     _keyForm.currentState?.save();

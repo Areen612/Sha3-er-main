@@ -4,7 +4,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:shagher/packages/components/button/simple_btn.dart';
 import 'package:shagher/packages/components/text_field_form/custom_filed.dart';
+import 'package:shagher/packages/pages/auth/components/field_bd.dart';
+import 'package:shagher/packages/pages/auth/components/field_city.dart';
+import 'package:shagher/packages/pages/auth/components/field_country.dart';
+import 'package:shagher/packages/pages/auth/components/field_exp.dart';
+import 'package:shagher/packages/pages/auth/components/field_phone.dart';
+import 'package:shagher/packages/pages/auth/components/field_skills.dart';
 import 'package:shagher/service/theme/app_theme.dart';
+import 'package:shagher/service/validotors/app_validators.dart';
+import 'package:shagher/themes/app_colors.dart';
 import 'package:shagher/util/path_icons.dart';
 import '../../../../language/generated/key_lang.dart';
 import '../../../components/loading/app_loading.dart';
@@ -16,6 +24,7 @@ import '../components/header_auth.dart';
 import '../components/rich_text_auth.dart';
 import '../manage_state/auth_service.dart';
 import '../model/user_auth.dart';
+import 'package:date_field/date_field.dart';
 
 class CvForm extends StatelessWidget {
   static const String id = 'CvForm';
@@ -37,60 +46,56 @@ class CvForm extends StatelessWidget {
             key: _keyForm,
             child: Column(
               children: [
-                // * header Auth
+                // * Header Auth
                 const HeaderAuth(),
-                // * hint Reset pass
-
+                // * Hint complete your cv
                 Text(
                   KeyLang.fillCv.tr(),
                   textAlign: TextAlign.start,
                   style: AppTheme.s1(context).copyWith(height: 1.5),
                 ),
-                // * Email
-                const SBH(h: 20),
-                FieldEmail(valueEmail: _userAuth.setEmail),
                 // * Birthdate
                 const SBH(h: 20),
-                CustomField(
-                  hint: KeyLang.birthday,
-                  pIcon: PathIcons.calender,
-                  keyboardType: TextInputType.datetime,
-                ),
+                FieldBirthday(valueBd: _userAuth.setbirthDate),
+                // * Experience
+                const SBH(h: 20),
+                FieldExperience(valueExp: _userAuth.setExperience),
+                // * Skills
+                const SBH(h: 20),
+                FieldSkills(valueSkills: _userAuth.setSkills),
+                // * Phone Number
+                const SBH(h: 20),
+                FieldPhoneNumber(valuePhone: _userAuth.setPhoneNumber),
+                // * Country
+                const SBH(h: 20),
+                FieldCountry(valueCountry: _userAuth.setCountry),
+                // * City
+                const SBH(h: 20),
+                FieldCity(valueCity: _userAuth.setCity),
+                const SBH(h: 20),
+                // * Button
 
-                const SBH(h: 20),
-                //** expanded
-                CustomField(
-                  hint: KeyLang.experience,
-                  //pIcon: PathIcons.certifcate,
-                  keyboardType: TextInputType.multiline,
-                  maxLines: 10,
-                ),
-                const SBH(h: 20),
-                CustomField(
-                  hint: KeyLang.skills,
-                  //pIcon: PathIcons.file,
-                  maxLines: 10,
-                ),
-                const SBH(h: 20),
-                //******** */
-                const CustomField(
-                  initValue: '+962',
-                  hint: KeyLang.mobilenumber,
-                  keyboardType: TextInputType.number,
-                ),
-                const SBH(h: 20),
-                CustomField(hint: KeyLang.country, pIcon: PathIcons.country),
-                const SBH(h: 20),
-                CustomField(hint: KeyLang.city, pIcon: PathIcons.country),
-                const SBH(h: 20),
-
-                // * button
                 Center(
                   // child: _auth.isLoading
                   // ? const AppLoading(chooseLoading: ChooseLoading.button)
                   // :
                   child: SimpleBtn(
-                    btnTitle: KeyLang.register, onTap: () {},
+                    btnTitle: KeyLang.uploadCv,
+                    onTap: () {},
+                  ),
+                ),
+                const SBH(h: 20),
+                Center(
+                  // child: _auth.isLoading
+                  // ? const AppLoading(chooseLoading: ChooseLoading.button)
+                  // :
+                  child: SimpleBtn(
+                    btnTitle: KeyLang.register,
+                    onTap: () {
+                      if (_keyForm.currentState?.validate() ?? false) {
+                        print('valid');
+                      }
+                    },
                     // onTap: () async {
                     //   if (_keyForm.currentState?.validate() ?? false) {
                     //     _keyForm.currentState?.save();
@@ -108,7 +113,10 @@ class CvForm extends StatelessWidget {
                     // },
                   ),
                 ),
-                const SBH(),
+
+                const SBH(
+                  h: 20,
+                ),
               ],
             ),
           ),

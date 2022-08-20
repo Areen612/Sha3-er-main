@@ -55,14 +55,15 @@ dependencies:
   validators: ^3.0.0
   # Manage State
   provider: ^6.0.1
-  shared_preferences: ^2.0.11
+  shared_preferences: ^2.0.15
   # Firebase
   # firebase_core: ^1.10.6
   # firebase_auth: ^3.3.4
   # cloud_firestore: ^3.1.5
   # Toast
   fluttertoast: ^8.0.8
-  toggle_switch: ^2.0.1
+  #toggle_switch: ^2.0.1
+  date_field: ^3.0.1
 
 dev_dependencies:
   flutter_test:

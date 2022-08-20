@@ -56,14 +56,14 @@ class AppTheme {
 
   // * set
   static Future<void> setTheme({required bool value}) async {
-    final SharedPreferences _sharedPref = await SharedPreferences.getInstance();
-    await _sharedPref.setBool(_keyTheme, value);
+    final SharedPreferences _sPref = await SharedPreferences.getInstance();
+    await _sPref.setBool(_keyTheme, value);
   }
 
   // * get
   static Future<bool> get getTheme async {
-    final SharedPreferences _sharedPref = await SharedPreferences.getInstance();
-    final bool? _theme = _sharedPref.getBool(_keyTheme);
+    final SharedPreferences _sPref = await SharedPreferences.getInstance();
+    final bool? _theme = _sPref.getBool(_keyTheme);
     return _theme ?? false;
   }
 }

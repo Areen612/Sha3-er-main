@@ -4,13 +4,10 @@ class ModelUserAuth {
   String email;
   String password;
   // * cv
-  // String firstName;
-  // String lastName;
-  // String email;
-  String birthDate;
+  DateTime? birthDate;
   String experience;
   String skills;
-  String mobileNumber;
+  String phoneNumber;
   String country;
   String city;
   // String creator;
@@ -21,10 +18,10 @@ class ModelUserAuth {
     this.lastName = '',
     this.email = '',
     this.password = '',
-    this.birthDate = '',
+    this.birthDate,
     this.experience = '',
     this.skills = '',
-    this.mobileNumber = '',
+    this.phoneNumber = '',
     this.country = '',
     this.city = '',
   });
@@ -32,11 +29,11 @@ class ModelUserAuth {
   setLname(String? lastName) => this.lastName = lastName ?? '';
   setEmail(String? email) => this.email = email ?? '';
   setPass(String? password) => this.password = password ?? '';
-  setbirthDate(String? birthDate) => this.birthDate = birthDate ?? '';
+  setbirthDate(DateTime? birthDate) => this.birthDate = birthDate;
+
   setExperience(String? experience) => this.experience = experience ?? '';
   setSkills(String? skills) => this.skills = skills ?? '';
-  setMobileNumber(String? mobileNumber) =>
-      this.mobileNumber = mobileNumber ?? '';
+  setPhoneNumber(String? phoneNumber) => this.phoneNumber = phoneNumber ?? '';
   setCountry(String? country) => this.country = country ?? '';
   setCity(String? city) => this.city = city ?? '';
   // TODO: creator

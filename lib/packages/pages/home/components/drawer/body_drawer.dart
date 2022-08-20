@@ -1,5 +1,6 @@
 import 'package:shagher/packages/pages/home/components/drawer/header_drawer.dart';
 import 'package:shagher/service/theme/app_theme.dart';
+import 'package:shagher/themes/app_colors.dart';
 import 'package:shagher/themes/change_theme.dart';
 import 'package:shagher/util/path_svg.dart';
 
@@ -25,7 +26,7 @@ class _DrawerBodyState extends State<DrawerBody> {
   Widget build(BuildContext context) {
     // * Auth Provider
     // final AuthService _auth = Provider.of<AuthService>(context);
-    //final ThemeChange _themeProvider = Provider.of<ThemeChange>(context);
+    final ThemeChange _themeProvider = Provider.of<ThemeChange>(context);
     _themeText = AppTheme.isDark(context) ? KeyLang.dark : KeyLang.light;
     return Drawer(
       child: Column(
@@ -56,13 +57,14 @@ class _DrawerBodyState extends State<DrawerBody> {
             //icon: PathSvg.dTheme,
             title: _themeText,
             onTap: () {},
-            // iconTrailing: Switch(
-            //   value: _themeProvider.isDark,
-            //   onChanged: (value) async {
-            //     _themeProvider.updateTheme = value;
-            //     await AppTheme.setTheme(value: value);
-            //   },
-            // ),
+            iconTrailing: Switch(
+              activeColor: AppColors.primary,
+              value: _themeProvider.isDark,
+              onChanged: (value) async {
+                _themeProvider.updateTheme = value;
+                await AppTheme.setTheme(value: value);
+              },
+            ),
             // iconTrailing: Switch(
             //   value: _theme.isDark,
             //   onChanged: (value) async {

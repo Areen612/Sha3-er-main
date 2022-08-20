@@ -11,7 +11,7 @@ class ThemeChange extends ChangeNotifier {
 
   void updateThemeShared() async {
     if (isDark != await AppTheme.getTheme) {
-      isDark = true;
+      isDark = await AppTheme.getTheme;
       notifyListeners();
     }
   }

@@ -9,6 +9,7 @@ import 'package:shagher/language/generated/key_lang.dart';
 import 'package:shagher/packages/components/config_material.dart';
 import 'package:shagher/packages/components/errors/error_text.dart';
 import 'package:shagher/packages/components/loading/loading_page.dart';
+import 'package:shagher/packages/manage_state/post.dart';
 import 'package:shagher/packages/pages/auth/manage_state/auth_service.dart';
 import 'package:shagher/service/restart/restart_app.dart';
 import 'package:shagher/themes/change_theme.dart';
@@ -91,26 +92,37 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RestartWidget(
-      child: ScreenUtilInit(
-        designSize: const Size(360, 690),
-        builder: (BuildContext context, child) => MaterialApp(
-          title: 'Sha3\'r',
-          theme: CustomTheme.lightTheme(context),
-          darkTheme: ThemeData.dark(),
-          //themeMode: ThemeMode.light,
-          localizationsDelegates: context.localizationDelegates,
-          supportedLocales: context.supportedLocales,
-          locale: context.locale,
-          // theme: ThemeData(
-          //   primarySwatch: Colors.blue,
-          // ),
-          debugShowCheckedModeBanner: false,
-          //home: const PageSplash()
-          scrollBehavior: AppScrollBehavior(),
-          initialRoute: SplashWidget.id,
-          routes: AppRoutes.routes,
-        ),
-      ),
-    );
+        child: MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => ThemeChange()),
+        ChangeNotifierProvider(create: (contex) => ManageStatePost()),
+      ],
+      child: Builder(builder: (context) {
+        final ThemeChange _themeProvider = Provider.of<ThemeChange>(context);
+        _themeProvider.updateThemeShared();
+        return ScreenUtilInit(
+          designSize: const Size(360, 690),
+          builder: (BuildContext context, child) => MaterialApp(
+            title: 'Sha3\'r',
+            theme: CustomTheme.lightTheme(context),
+            darkTheme: CustomTheme.darkTheme(context),
+            themeMode: _themeProvider.themeModel,
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+            locale: context.locale,
+            // theme: ThemeData(
+            //   primarySwatch: Colors.blue,
+            // ),
+            debugShowCheckedModeBanner: false,
+            //home: const PageSplash()
+            scrollBehavior: AppScrollBehavior(),
+            initialRoute: SplashWidget.id,
+            routes: AppRoutes.routes,
+          ),
+        );
+      }),
+    ));
+
+    ;
   }
 }
