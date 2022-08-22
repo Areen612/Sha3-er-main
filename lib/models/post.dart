@@ -1,4 +1,5 @@
 class ModelPost {
+  int id;
   String title;
   String requirements;
   String rangeSalary;
@@ -6,6 +7,7 @@ class ModelPost {
   // ModelCompany? creator;
 
   ModelPost({
+    required this.id,
     this.title = '',
     this.requirements = '',
     this.rangeSalary = '',

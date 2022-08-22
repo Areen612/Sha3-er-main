@@ -1,4 +1,4 @@
-package com.example.shagher
+package com.psut.shager
 
 import io.flutter.embedding.android.FlutterActivity
 
