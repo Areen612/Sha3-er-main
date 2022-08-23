@@ -15,6 +15,7 @@ InputDecoration fieldDecoration(BuildContext context,
     labelText: labelText,
     helperText: helperText,
     helperMaxLines: 3,
+    errorMaxLines: 3,
     // helperStyle: TextStyle(overflow: TextOverflow.),
     prefixIcon: Padding(
       padding: EdgeInsets.all(10.h),

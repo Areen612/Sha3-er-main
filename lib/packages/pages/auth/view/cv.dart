@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -10,6 +11,8 @@ import 'package:shagher/packages/pages/auth/components/field_country.dart';
 import 'package:shagher/packages/pages/auth/components/field_exp.dart';
 import 'package:shagher/packages/pages/auth/components/field_phone.dart';
 import 'package:shagher/packages/pages/auth/components/field_skills.dart';
+import 'package:shagher/packages/pages/auth/manage_state/user_service.dart';
+import 'package:shagher/packages/pages/home/views/body.dart';
 import 'package:shagher/service/theme/app_theme.dart';
 import 'package:shagher/service/validotors/app_validators.dart';
 import 'package:shagher/themes/app_colors.dart';
@@ -22,7 +25,7 @@ import '../../../components/toast/custom_toast.dart';
 import '../components/field_email.dart';
 import '../components/header_auth.dart';
 import '../components/rich_text_auth.dart';
-import '../manage_state/auth_service.dart';
+
 import '../model/user_auth.dart';
 import 'package:date_field/date_field.dart';
 
@@ -36,8 +39,7 @@ class CvForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // * Auth Provider
-//    final AuthService _auth = Provider.of<AuthService>(context);
+    final UserAuthService _auth = Provider.of<UserAuthService>(context);
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -76,42 +78,47 @@ class CvForm extends StatelessWidget {
                 // * Button
 
                 Center(
-                  // child: _auth.isLoading
-                  // ? const AppLoading(chooseLoading: ChooseLoading.button)
-                  // :
-                  child: SimpleBtn(
-                    btnTitle: KeyLang.uploadCv,
-                    onTap: () {},
-                  ),
+                  child: _auth.isLoading
+                      ? const AppLoading(chooseLoading: ChooseLoading.button)
+                      : SimpleBtn(
+                          btnTitle: KeyLang.uploadCv,
+                          onTap: () async {
+                            if (_keyForm.currentState?.validate() ?? false) {
+                              _keyForm.currentState?.save();
+                              FocusScope.of(context).requestFocus(FocusNode());
+                              User? _user =
+                                  await _auth.register(data: _userAuth);
+                              if (_user != null) {
+                                _navHome(context);
+                              } else {
+                                errorToast(_auth.errorMessage);
+                              }
+                            }
+                          },
+                        ),
                 ),
                 const SBH(h: 20),
                 Center(
-                  // child: _auth.isLoading
-                  // ? const AppLoading(chooseLoading: ChooseLoading.button)
-                  // :
-                  child: SimpleBtn(
-                    btnTitle: KeyLang.register,
-                    onTap: () {
-                      if (_keyForm.currentState?.validate() ?? false) {
-                        print('valid');
-                      }
-                    },
-                    // onTap: () async {
-                    //   if (_keyForm.currentState?.validate() ?? false) {
-                    //     _keyForm.currentState?.save();
+                  child: _auth.isLoading
+                      ? const AppLoading(chooseLoading: ChooseLoading.button)
+                      : SimpleBtn(
+                          btnTitle: KeyLang.register,
+                          onTap: () async {
+                            if (_keyForm.currentState?.validate() ?? false) {
+                              _keyForm.currentState?.save();
 
-                    //     FocusScope.of(context).requestFocus(FocusNode());
+                              FocusScope.of(context).requestFocus(FocusNode());
 
-                    //     bool _result =
-                    //         await _auth.resetPassword(data: _userAuth);
-                    //     if (_result) {
-                    //       Navigator.pop(context);
-                    //     } else {
-                    //       errorToast(_auth.errorMessage);
-                    //     }
-                    //   }
-                    // },
-                  ),
+                              bool _result =
+                                  await _auth.resetPassword(data: _userAuth);
+                              if (_result) {
+                                Navigator.pop(context);
+                              } else {
+                                errorToast(_auth.errorMessage);
+                              }
+                            }
+                          },
+                        ),
                 ),
 
                 const SBH(
@@ -124,4 +131,8 @@ class CvForm extends StatelessWidget {
       ),
     );
   }
+
+  // * Navigator Home Page
+  void _navHome(BuildContext context) =>
+      Navigator.pushNamed(context, HomeWidget.id);
 }

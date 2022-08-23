@@ -1,5 +1,4 @@
 import '../../../components/loading/loading_page.dart';
-import '../manage_state/auth_service.dart';
 import 'login.dart';
 import '../../home/views/body.dart';
 import 'package:flutter/material.dart';

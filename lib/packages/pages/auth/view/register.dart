@@ -1,21 +1,18 @@
-import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:provider/provider.dart';
 import 'package:shagher/packages/components/button/simple_btn.dart';
-import 'package:shagher/packages/components/text_field_form/custom_filed.dart';
+import 'package:shagher/packages/components/loading/app_loading.dart';
+import 'package:shagher/packages/components/loading/enum_loading.dart';
+import 'package:shagher/packages/components/toast/custom_toast.dart';
 import 'package:shagher/packages/pages/auth/components/company_reg.dart';
 import 'package:shagher/packages/pages/auth/components/field_fname.dart';
 import 'package:shagher/packages/pages/auth/components/field_lname.dart';
 import 'package:shagher/packages/pages/auth/components/toggle_switch.dart';
+import 'package:shagher/packages/pages/auth/manage_state/user_service.dart';
 import 'package:shagher/packages/pages/auth/view/cv.dart';
 import 'package:shagher/packages/pages/home/views/body.dart';
 import 'package:shagher/service/validotors/app_validators.dart';
-import 'package:shagher/util/path_icons.dart';
-
-import '../../../components/loading/app_loading.dart';
-import '../../../components/loading/enum_loading.dart';
-import '../../../components/toast/custom_toast.dart';
-import '../manage_state/auth_service.dart';
 //import 'package:firebase_auth/firebase_auth.dart';
-import 'package:provider/provider.dart';
 import '../../../../language/generated/key_lang.dart';
 import '../../../components/space/size_box_height.dart';
 import '../components/field_email.dart';
@@ -28,15 +25,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RegisterWidget extends StatefulWidget {
   static const String id = 'RegisterWidget';
-  // * key Form
-  static final GlobalKey<FormState> _keyForm = GlobalKey<FormState>();
-  // *  model save data
-  static final ModelUserAuth _userAuth = ModelUserAuth();
-  // * save pass
-  static String? pass;
-  // * company flag
-  static String? flag = 'User';
-  static bool rep = false;
   const RegisterWidget({Key? key}) : super(key: key);
 
   @override
@@ -44,27 +32,28 @@ class RegisterWidget extends StatefulWidget {
 }
 
 class _PageRegisterState extends State<RegisterWidget> {
-  static String? pass;
-  static int? flag = 0;
   @override
   Widget build(BuildContext context) {
+    // * save pass
+    String? pass;
+    // * company flag
+    int? flag = 0;
+    // * key Form
+    final GlobalKey<FormState> _keyForm = GlobalKey<FormState>();
+    // *  model save data
+    final ModelUserAuth _userAuth = ModelUserAuth();
     // * Auth Provider
-    // final AuthService _auth = Provider.of<AuthService>(context);
+    final UserAuthService _auth = Provider.of<UserAuthService>(context);
     return Scaffold(
       body: SingleChildScrollView(
           child: Container(
         margin: EdgeInsets.symmetric(horizontal: 20.w),
         child: Form(
-          key: RegisterWidget._keyForm,
+          key: _keyForm,
           child: Column(
             children: [
               // * Header Auth
               const HeaderAuth(),
-              // DropDownList(onChanged: (value) {
-              //   setState(() {
-              //     flag = value;
-              //   });
-              // }),
               ToggleSwitchCompany(onSelected: (index) {
                 setState(() {
                   flag = index;
@@ -78,16 +67,15 @@ class _PageRegisterState extends State<RegisterWidget> {
                     const SBH(),
 
                     // * First name
-                    FieldFname(valueFname: RegisterWidget._userAuth.setFname),
+                    FieldFname(valueFname: _userAuth.setFname),
                     const SBH(),
                     // * Last name
-                    FieldLname(valueLname: RegisterWidget._userAuth.setLname),
+                    FieldLname(valueLname: _userAuth.setLname),
                     const SBH(),
                     // * Email
-                    FieldEmail(valueEmail: RegisterWidget._userAuth.setEmail),
+                    FieldEmail(valueEmail: _userAuth.setEmail),
                     const SBH(),
                     // * Password
-                    // TODO: tr()
                     FieldPass(
                       onChanged: (value) => pass = value,
                       helperText: KeyLang.errorPass,
@@ -95,37 +83,25 @@ class _PageRegisterState extends State<RegisterWidget> {
                     const SBH(),
                     // * Confirm Password
                     FieldPass(
-                      onValidators: (value) => AppValidators.isEqualPass(
-                          value, RegisterWidget.pass ?? ''),
-                      valuePass: RegisterWidget._userAuth.setPass,
+                      onValidators: (value) =>
+                          AppValidators.isEqualPass(value, pass ?? ''),
+                      valuePass: _userAuth.setPass,
                     ),
                     const SBH(h: 20),
                     // * button
                     Center(
-                      //  child: _auth.isLoading
-                      // ? const AppLoading(chooseLoading: ChooseLoading.button)
-                      // :
-                      child: SimpleBtn(
-                        btnTitle: KeyLang.cont,
-                        onTap: () {
-                          if (RegisterWidget._keyForm.currentState
-                                  ?.validate() ??
-                              false) Navigator.pushNamed(context, CvForm.id);
-                        },
-                        // onTap: () async {
-                        //   if (_keyForm.currentState?.validate() ?? false) {
-                        //     _keyForm.currentState?.save();
-                        //     FocusScope.of(context).requestFocus(FocusNode());
-
-                        //     User? _user = await _auth.register(data: _userAuth);
-                        //     if (_user != null) {
-                        //       _navHome(context);
-                        //     } else {
-                        //       errorToast(_auth.errorMessage);
-                        //     }
-                        //   }
-                        // },
-                      ),
+                      child: _auth.isLoading
+                          ? const AppLoading(
+                              chooseLoading: ChooseLoading.button)
+                          : SimpleBtn(
+                              btnTitle: KeyLang.cont,
+                              onTap: (() {
+                                if (_keyForm.currentState?.validate() ??
+                                    false) {
+                                  Navigator.pushNamed(context, CvForm.id);
+                                }
+                              }),
+                            ),
                     ),
                     const SBH(h: 20),
                     // *  have Account
@@ -145,14 +121,4 @@ class _PageRegisterState extends State<RegisterWidget> {
       )),
     );
   }
-
-  // * Navigator Home Page
-  void _navHome(BuildContext context) =>
-      Navigator.pushNamed(context, HomeWidget.id);
-
-  // bool _replace(String? flag) {
-  //   flag == 'Company' ? rep = true : rep = false;
-  //   print('$flag  ${RegisterWidget.rep}');
-  //   return RegisterWidget.rep;
-  // }
 }

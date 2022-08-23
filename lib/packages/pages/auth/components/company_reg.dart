@@ -1,16 +1,23 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shagher/language/generated/key_lang.dart';
 import 'package:shagher/packages/components/button/simple_btn.dart';
+import 'package:shagher/packages/components/loading/app_loading.dart';
+import 'package:shagher/packages/components/loading/enum_loading.dart';
 import 'package:shagher/packages/components/space/size_box_height.dart';
 import 'package:shagher/packages/components/text_field_form/custom_filed.dart';
+import 'package:shagher/packages/components/toast/custom_toast.dart';
 import 'package:shagher/packages/pages/auth/components/field_city.dart';
 import 'package:shagher/packages/pages/auth/components/field_company_name.dart';
 import 'package:shagher/packages/pages/auth/components/field_country.dart';
 import 'package:shagher/packages/pages/auth/components/field_specialty.dart';
 import 'package:shagher/packages/pages/auth/components/field_email.dart';
 import 'package:shagher/packages/pages/auth/components/field_pass.dart';
+import 'package:shagher/packages/pages/auth/manage_state/company_service.dart';
 import 'package:shagher/packages/pages/auth/model/company_auth.dart';
+import 'package:shagher/packages/pages/home/views/body.dart';
 import 'package:shagher/service/validotors/app_validators.dart';
 import 'package:shagher/util/path_icons.dart';
 import 'rich_text_auth.dart';
@@ -25,11 +32,12 @@ class RegCompanyColumn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // * Auth Provider
+    final CompanyAuthService _auth = Provider.of<CompanyAuthService>(context);
     return Column(
       children: [
         const SBH(),
         // * Company name
-
         FieldCompanyName(valueCompanyName: _companyAuth.setCompanyName),
         const SBH(),
         // * Email
@@ -52,6 +60,7 @@ class RegCompanyColumn extends StatelessWidget {
         const SBH(),
         // * Country
         FieldCountry(valueCountry: _companyAuth.setCountry),
+        const SBH(),
         // * City
         FieldCity(valueCity: _companyAuth.setCity),
         const SBH(),
@@ -81,30 +90,24 @@ class RegCompanyColumn extends StatelessWidget {
         const SBH(h: 20),
         // * button
         Center(
-          //  child: _auth.isLoading
-          // ? const AppLoading(chooseLoading: ChooseLoading.button)
-          // :
-          child: SimpleBtn(
-            btnTitle: KeyLang.register,
-            onTap: () {
-              if (_keyForm.currentState?.validate() ?? false) {
-                //print('valid');
-              }
-            },
-            // onTap: () async {
-            //   if (_keyForm.currentState?.validate() ?? false) {
-            //     _keyForm.currentState?.save();
-            //     FocusScope.of(context).requestFocus(FocusNode());
-
-            //     User? _user = await _auth.register(data: _userAuth);
-            //     if (_user != null) {
-            //       _navHome(context);
-            //     } else {
-            //       errorToast(_auth.errorMessage);
-            //     }
-            //   }
-            // },
-          ),
+          child: _auth.isLoading
+              ? const AppLoading(chooseLoading: ChooseLoading.button)
+              : SimpleBtn(
+                  btnTitle: KeyLang.cont,
+                  onTap: () async {
+                    if (_keyForm.currentState?.validate() ?? false) {
+                      _keyForm.currentState?.save();
+                      FocusScope.of(context).requestFocus(FocusNode());
+                      User? _user =
+                          await _auth.registerCompany(data: _companyAuth);
+                      if (_user != null) {
+                        _navHome(context);
+                      } else {
+                        errorToast(_auth.errorMessage);
+                      }
+                    }
+                  },
+                ),
         ),
         const SBH(h: 20),
         // *  have Account
@@ -118,3 +121,7 @@ class RegCompanyColumn extends StatelessWidget {
     );
   }
 }
+
+// * Navigator Home Page
+void _navHome(BuildContext context) =>
+    Navigator.pushNamed(context, HomeWidget.id);

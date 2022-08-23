@@ -1,11 +1,11 @@
 import 'package:shagher/packages/components/button/simple_btn.dart';
+import 'package:shagher/packages/pages/auth/manage_state/company_service.dart';
+import 'package:shagher/packages/pages/auth/manage_state/user_service.dart';
 import 'package:shagher/packages/pages/home/views/body.dart';
-
 import '../../../components/loading/app_loading.dart';
 import '../../../components/loading/enum_loading.dart';
 import '../../../components/toast/custom_toast.dart';
-import '../manage_state/auth_service.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
 import '../../../../language/generated/key_lang.dart';
 import '../../../components/space/size_box_height.dart';
@@ -30,7 +30,8 @@ class LoginWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // * Auth Provider
-    //  final AuthService _auth = Provider.of<AuthService>(context);
+    final UserAuthService _auth = Provider.of<UserAuthService>(context);
+    final CompanyAuthService _comp = Provider.of<CompanyAuthService>(context);
     return Scaffold(
         body: SingleChildScrollView(
       child: Container(
@@ -53,30 +54,24 @@ class LoginWidget extends StatelessWidget {
 
               // * button
               Center(
-                //child: _auth.isLoading
-                // ? const AppLoading(chooseLoading: ChooseLoading.button)
-                // :
-                child: SimpleBtn(
-                  btnTitle: KeyLang.login,
-                  onTap: () {
-                    if (_keyForm.currentState?.validate() ?? false) {
-                      print('valid');
-                    }
-                  },
-                  // onTap: () async {
-                  //   if (_keyForm.currentState?.validate() ?? false) {
-                  //     _keyForm.currentState?.save();
-                  //     FocusScope.of(context).requestFocus(FocusNode());
+                child: _auth.isLoading
+                    ? const AppLoading(chooseLoading: ChooseLoading.button)
+                    : SimpleBtn(
+                        btnTitle: KeyLang.login,
+                        onTap: () async {
+                          if (_keyForm.currentState?.validate() ?? false) {
+                            _keyForm.currentState?.save();
+                            FocusScope.of(context).requestFocus(FocusNode());
 
-                  //     User? _user = await _auth.login(data: _userAuth);
-                  //     if (_user != null) {
-                  //       _navHome(context);
-                  //     } else {
-                  //       errorToast(_auth.errorMessage);
-                  //     }
-                  //   }
-                  // },
-                ),
+                            User? _user = await _auth.login(data: _userAuth);
+                            if (_user != null) {
+                              _navHome(context);
+                            } else {
+                              errorToast(_auth.errorMessage);
+                            }
+                          }
+                        },
+                      ),
               ),
               const SBH(h: 20),
               // * Don't have Account

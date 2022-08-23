@@ -28,16 +28,6 @@ class AppValidators {
     }
   }
 
-  // * pass
-  // static String? isPass(String? value) {
-  //   final String? valueTrim = value?.trim();
-  //   if (valueTrim?.isEmpty ?? true) {
-  //     return _messageEnterValue;
-  //   } else if (!validators.isLength(valueTrim!, 6)) {
-  //     return _messageCorrectPass;
-  //   }
-  // }
-
   static String? isPass(String? value) {
     final String? valueTrim = value?.trim();
     if (valueTrim?.isEmpty ?? true) {

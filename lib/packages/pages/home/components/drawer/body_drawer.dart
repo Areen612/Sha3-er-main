@@ -1,10 +1,9 @@
+import 'package:shagher/packages/pages/auth/manage_state/user_service.dart';
 import 'package:shagher/packages/pages/home/components/drawer/header_drawer.dart';
 import 'package:shagher/service/theme/app_theme.dart';
 import 'package:shagher/themes/app_colors.dart';
 import 'package:shagher/themes/change_theme.dart';
 import 'package:shagher/util/path_svg.dart';
-
-import '../../../auth/manage_state/auth_service.dart';
 
 import '../../../../../language/generated/key_lang.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +24,7 @@ class _DrawerBodyState extends State<DrawerBody> {
   @override
   Widget build(BuildContext context) {
     // * Auth Provider
-    // final AuthService _auth = Provider.of<AuthService>(context);
+    final UserAuthService _auth = Provider.of<UserAuthService>(context);
     final ThemeChange _themeProvider = Provider.of<ThemeChange>(context);
     _themeText = AppTheme.isDark(context) ? KeyLang.dark : KeyLang.light;
     return Drawer(
@@ -79,7 +78,7 @@ class _DrawerBodyState extends State<DrawerBody> {
             //icon: PathSvg.dlogout,
             title: KeyLang.logout,
             onTap: () async {
-              //_auth.signOut();
+              _auth.signOut();
             },
           ),
         ],
