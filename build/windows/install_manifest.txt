@@ -38,3 +38,4 @@ C:/Users/chick61/source/repos/FlutterProjects/Sha3-er-main/Sha3-er-main/build/wi
 C:/Users/chick61/source/repos/FlutterProjects/Sha3-er-main/Sha3-er-main/build/windows/runner/Debug/data/flutter_assets/packages/font_awesome_flutter/lib/fonts/fa-brands-400.ttf
 C:/Users/chick61/source/repos/FlutterProjects/Sha3-er-main/Sha3-er-main/build/windows/runner/Debug/data/flutter_assets/packages/font_awesome_flutter/lib/fonts/fa-regular-400.ttf
 C:/Users/chick61/source/repos/FlutterProjects/Sha3-er-main/Sha3-er-main/build/windows/runner/Debug/data/flutter_assets/packages/font_awesome_flutter/lib/fonts/fa-solid-900.ttf
+C:/Users/chick61/source/repos/FlutterProjects/Sha3-er-main/Sha3-er-main/build/windows/runner/Debug/data/flutter_assets/shaders/ink_sparkle.frag

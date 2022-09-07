@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:shagher/themes/app_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../language/generated/key_lang.dart';
 
 class ElevatedBtn extends StatelessWidget {
   const ElevatedBtn({
@@ -32,8 +31,8 @@ class ElevatedBtn extends StatelessWidget {
     return ElevatedButton(
         onPressed: _onTap,
         style: ElevatedButton.styleFrom(
-            primary: AppColors.black,
-            onPrimary: AppColors.cardClick,
+            foregroundColor: AppColors.cardClick,
+            backgroundColor: AppColors.primary,
             fixedSize: Size.fromWidth(_width.w),
             padding: const EdgeInsets.all(16)),
         child: Text(

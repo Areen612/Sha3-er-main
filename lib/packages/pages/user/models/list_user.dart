@@ -1,4 +1,4 @@
-import 'package:shagher/packages/pages/user/models/user.dart';
+import 'package:shagher/packages/pages/user/models/model_user.dart';
 import 'package:shagher/util/api_key.dart';
 
 class ModelListUser {

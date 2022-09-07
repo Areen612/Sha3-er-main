@@ -93,7 +93,7 @@ class RegCompanyColumn extends StatelessWidget {
           child: _auth.isLoading
               ? const AppLoading(chooseLoading: ChooseLoading.button)
               : SimpleBtn(
-                  btnTitle: KeyLang.cont,
+                  btnTitle: KeyLang.register,
                   onTap: () async {
                     if (_keyForm.currentState?.validate() ?? false) {
                       _keyForm.currentState?.save();

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:shagher/packages/components/button/simple_btn.dart';
-import 'package:shagher/packages/components/text_field_form/custom_filed.dart';
 import 'package:shagher/packages/pages/auth/components/field_bd.dart';
 import 'package:shagher/packages/pages/auth/components/field_city.dart';
 import 'package:shagher/packages/pages/auth/components/field_country.dart';
@@ -12,29 +11,21 @@ import 'package:shagher/packages/pages/auth/components/field_exp.dart';
 import 'package:shagher/packages/pages/auth/components/field_phone.dart';
 import 'package:shagher/packages/pages/auth/components/field_skills.dart';
 import 'package:shagher/packages/pages/auth/manage_state/user_service.dart';
+import 'package:shagher/packages/pages/auth/view/register.dart';
 import 'package:shagher/packages/pages/home/views/body.dart';
 import 'package:shagher/service/theme/app_theme.dart';
-import 'package:shagher/service/validotors/app_validators.dart';
-import 'package:shagher/themes/app_colors.dart';
-import 'package:shagher/util/path_icons.dart';
 import '../../../../language/generated/key_lang.dart';
 import '../../../components/loading/app_loading.dart';
 import '../../../components/loading/enum_loading.dart';
 import '../../../components/space/size_box_height.dart';
 import '../../../components/toast/custom_toast.dart';
-import '../components/field_email.dart';
 import '../components/header_auth.dart';
-import '../components/rich_text_auth.dart';
-
-import '../model/user_auth.dart';
-import 'package:date_field/date_field.dart';
 
 class CvForm extends StatelessWidget {
   static const String id = 'CvForm';
   // * key Form
   static final GlobalKey<FormState> _keyForm = GlobalKey<FormState>();
   // *  model save data
-  static final ModelUserAuth _userAuth = ModelUserAuth();
   const CvForm({Key? key}) : super(key: key);
 
   @override
@@ -58,45 +49,57 @@ class CvForm extends StatelessWidget {
                 ),
                 // * Birthdate
                 const SBH(h: 20),
-                FieldBirthday(valueBd: _userAuth.setbirthDate),
+                FieldBirthday(valueBd: PageRegisterState.userAuth.setbirthDate),
                 // * Experience
                 const SBH(h: 20),
-                FieldExperience(valueExp: _userAuth.setExperience),
+                FieldExperience(
+                    valueExp: PageRegisterState.userAuth.setExperience),
                 // * Skills
                 const SBH(h: 20),
-                FieldSkills(valueSkills: _userAuth.setSkills),
+                FieldSkills(valueSkills: PageRegisterState.userAuth.setSkills),
+                // const SmartSelector(),
+                // SmartSelect<String>.multiple(
+                //   choiceGroupBuilder: (context, header, choices) {
+                //     return StickyHeader(
+                //       header: header,
+                //       content: choices,
+                //     );
+                //   },
+                // ),
                 // * Phone Number
                 const SBH(h: 20),
-                FieldPhoneNumber(valuePhone: _userAuth.setPhoneNumber),
+                FieldPhoneNumber(
+                    valuePhone: PageRegisterState.userAuth.setPhoneNumber),
                 // * Country
                 const SBH(h: 20),
-                FieldCountry(valueCountry: _userAuth.setCountry),
+                FieldCountry(
+                    valueCountry: PageRegisterState.userAuth.setCountry),
                 // * City
                 const SBH(h: 20),
-                FieldCity(valueCity: _userAuth.setCity),
+                FieldCity(valueCity: PageRegisterState.userAuth.setCity),
                 const SBH(h: 20),
                 // * Button
 
-                Center(
-                  child: _auth.isLoading
-                      ? const AppLoading(chooseLoading: ChooseLoading.button)
-                      : SimpleBtn(
-                          btnTitle: KeyLang.uploadCv,
-                          onTap: () async {
-                            if (_keyForm.currentState?.validate() ?? false) {
-                              _keyForm.currentState?.save();
-                              FocusScope.of(context).requestFocus(FocusNode());
-                              User? _user =
-                                  await _auth.register(data: _userAuth);
-                              if (_user != null) {
-                                _navHome(context);
-                              } else {
-                                errorToast(_auth.errorMessage);
-                              }
-                            }
-                          },
-                        ),
-                ),
+                // Center(
+                //   child: _auth.isLoading
+                //       ? const AppLoading(chooseLoading: ChooseLoading.button)
+                //       : SimpleBtn(
+                //           btnTitle: KeyLang.uploadCv,
+                //           onTap: () async {
+                //             if (_keyForm.currentState?.validate() ?? false) {
+                //               _keyForm.currentState?.save();
+                //               FocusScope.of(context).requestFocus(FocusNode());
+                //               User? _user =
+                //                   await _auth.register(data: _userAuth);
+                //               if (_user != null) {
+                //                 _navHome(context);
+                //               } else {
+                //                 errorToast(_auth.errorMessage);
+                //               }
+                //             }
+                //           },
+                //         ),
+                // ),
                 const SBH(h: 20),
                 Center(
                   child: _auth.isLoading
@@ -109,9 +112,9 @@ class CvForm extends StatelessWidget {
 
                               FocusScope.of(context).requestFocus(FocusNode());
 
-                              bool _result =
-                                  await _auth.resetPassword(data: _userAuth);
-                              if (_result) {
+                              User? _result = await _auth.register(
+                                  data: PageRegisterState.userAuth);
+                              if (_result != null) {
                                 Navigator.pop(context);
                               } else {
                                 errorToast(_auth.errorMessage);

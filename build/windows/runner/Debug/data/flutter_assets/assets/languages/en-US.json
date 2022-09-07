@@ -1,8 +1,10 @@
 {
     "appName": "Sha3'r",
+    "getStarted": "Get Started",
     "user": "User",
     "company": "Company",
     "welcomeMessage": "Welcome to Sha3'r for\n employement",
+    "uploadCv": "Upload Your CV",
     "userName": "User name",
     "userProfile": "Profile",
     "language": "Language",
@@ -60,10 +62,10 @@
     "resetPassword": "Reset password",
     "enterValue": "Please enter a value.",
     "errorEmail": "please write an email address by way correct.",
-    "errorPass": "A minimum 6 characters password.",
+    "errorPass": "A minimum eight characters, at least one letter, one number and one special character @$!%*#?&",
     "errorConfirmPass": "Your password and confirmation password don't match.",
     "errorInitFirebase": "Failed to connect with the database",
-    "errorPhoneNumber": "Phone number must be valid and content 10 digits",
+    "errorPhoneNumber": "Phone number must be valid and content 9 digits",
     "errorNoData": "There are no data",
     "noInternet": "No Internet connection, please connect to the Internet then try again",
     "logout": "Logout",
@@ -84,5 +86,9 @@
     "nationalInvestorNumber": "National Investor Number  ",
     "commercialNumber": "Commercial Number",
     "commercialName": " Commercial Name",
-    "country": "Country"
+    "country": "Country",
+    "tourHeaderOne": "A Student, and looking for a training?\nOr a Fresh graduate, and looking for a job?",
+    "tourSubtitleOne": "####",
+    "tourHeaderTwo": "A Company, and looking for employees?",
+    "tourHeaderThree": "JOIN US NOW, your chance is waiting for you!"
 }

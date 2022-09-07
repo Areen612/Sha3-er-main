@@ -64,6 +64,12 @@ dependencies:
   fluttertoast: ^8.0.8
   #toggle_switch: ^2.0.1
   date_field: ^3.0.1
+  # selector
+  flutter_awesome_select: ^6.5.0
+  #smart_select: ^4.3.2
+  sticky_headers: "^0.1.8"
+  # switch animation between light and dark theme
+  animated_theme_switcher: ^2.0.1-nullsafety.0
  
   
 

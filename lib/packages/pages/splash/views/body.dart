@@ -6,7 +6,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 //import 'package:flutter_svg/flutter_svg.dart';
 //import 'package:google_fonts/google_fonts.dart';
 import 'package:shagher/language/generated/key_lang.dart';
-import 'package:shagher/packages/pages/home/views/body.dart';
 import 'package:shagher/packages/pages/tour/views/body.dart';
 import 'package:shagher/service/theme/app_theme.dart';
 import 'package:shagher/themes/app_colors.dart';
@@ -42,10 +41,13 @@ class _PageSplashState extends State<SplashWidget> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image(
-                image: const AssetImage(PathImages.appLogo),
-                width: 250.w,
-                height: 250.h,
+              Transform.scale(
+                scale: 1.4,
+                child: Image(
+                  image: const AssetImage(PathImages.appLogo),
+                  width: 250.w,
+                  height: 200.h,
+                ),
               ),
               //  SvgPicture
               // SvgPicture.asset(

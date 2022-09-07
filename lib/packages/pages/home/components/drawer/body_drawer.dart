@@ -1,9 +1,9 @@
 import 'package:shagher/packages/pages/auth/manage_state/user_service.dart';
 import 'package:shagher/packages/pages/home/components/drawer/header_drawer.dart';
+import 'package:shagher/packages/pages/user/views/user_profile.dart';
 import 'package:shagher/service/theme/app_theme.dart';
 import 'package:shagher/themes/app_colors.dart';
 import 'package:shagher/themes/change_theme.dart';
-import 'package:shagher/util/path_svg.dart';
 
 import '../../../../../language/generated/key_lang.dart';
 import 'package:flutter/material.dart';
@@ -35,10 +35,9 @@ class _DrawerBodyState extends State<DrawerBody> {
           //const Image(image: AssetImage(PathImage.logo)),
           // * User Profile
           CustomListDrawer(
-            // icon: PathSvg.profileIcon,
-            title: KeyLang.userProfile,
-            onTap: () {},
-          ),
+              // icon: PathSvg.profileIcon,
+              title: KeyLang.userProfile,
+              onTap: () => _navProfile(context)),
           // * Translate
           CustomListDrawer(
             // icon: PathSvg.dTranslate,
@@ -87,6 +86,12 @@ class _DrawerBodyState extends State<DrawerBody> {
   }
 }
 
+void _navProfile(BuildContext context) =>
+    Navigator.pushNamed(context, UserProfile.id);
+
+
+
+    
 // import 'package:flutter/material.dart';
 // import 'package:shagher/packages/pages/home/components/drawer/header_drawer.dart';
 // import 'package:shagher/packages/pages/home/components/drawer/setting_drawer.dart';

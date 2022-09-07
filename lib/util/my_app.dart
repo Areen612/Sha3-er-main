@@ -8,7 +8,7 @@ import 'package:shagher/language/generated/key_lang.dart';
 import 'package:shagher/packages/components/config_material.dart';
 import 'package:shagher/packages/components/errors/error_text.dart';
 import 'package:shagher/packages/components/loading/loading_page.dart';
-import 'package:shagher/packages/manage_state/post.dart';
+import 'package:shagher/packages/pages/Posts/manage_state/post.dart';
 import 'package:shagher/packages/pages/auth/manage_state/company_service.dart';
 import 'package:shagher/packages/pages/auth/manage_state/user_service.dart';
 import 'package:shagher/service/restart/restart_app.dart';
@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
                 ChangeNotifierProvider(create: (contex) => ManageStatePost()),
                 ChangeNotifierProvider(create: (context) => UserAuthService()),
                 ChangeNotifierProvider(
-                    create: (context) => CompanyAuthService()),
+                    create: (context) => CompanyAuthService())
               ],
               child: Builder(builder: (context) {
                 final ThemeChange _themeProvider =

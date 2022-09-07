@@ -12,16 +12,16 @@ class CustomTheme {
         elevation: 10,
         iconTheme: const IconThemeData(color: AppColors.white),
         titleTextStyle: TextStyle(
-          color: AppColors.white,
-          fontSize: 20.sp,
-          fontFamily: GoogleFonts.outfit().fontFamily, //ToDo change font
-        ),
+            color: AppColors.white,
+            fontSize: 20.sp,
+            fontFamily: GoogleFonts.roboto().fontFamily //ToDo change font
+            ),
       ),
       // ToDo tapBarTheme
       textTheme: Theme.of(context).textTheme.apply(
             bodyColor: AppColors.black,
             displayColor: AppColors.black,
-            fontFamily: GoogleFonts.outfit().fontFamily, // ToDo change font
+            fontFamily: GoogleFonts.roboto().fontFamily, // ToDo change font
           ),
     );
   }
@@ -33,7 +33,7 @@ class CustomTheme {
       textTheme: Theme.of(context).textTheme.apply(
             bodyColor: Colors.white, //use AppColors here
             displayColor: Colors.white, //use AppColors here
-            fontFamily: GoogleFonts.lexendDeca().fontFamily, //change font
+            fontFamily: GoogleFonts.roboto().fontFamily, //change font
           ),
     );
   }

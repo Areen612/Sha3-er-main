@@ -17,9 +17,10 @@ class _TrainingTabBarState extends State<TabBarTraining> {
   @override
   Widget build(BuildContext context) {
     return TabBar(
-      //indicator: BoxDecoration(
-      //borderRadius: BorderRadius.circular(50), // Creates border
-      //color: AppColors.primary),
+      //labelColor: AppColors.primary,
+      // indicator: BoxDecoration(
+      //     borderRadius: BorderRadius.circular(5), // Creates border
+      //     color: AppColors.primary),
       indicatorColor: AppColors.primary,
       tabs: [
         Tab(
