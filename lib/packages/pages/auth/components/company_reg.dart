@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -124,4 +123,4 @@ class RegCompanyColumn extends StatelessWidget {
 
 // * Navigator Home Page
 void _navHome(BuildContext context) =>
-    Navigator.pushNamed(context, HomeWidget.id);
+    Navigator.pushNamed(context, UserLandScape.id);

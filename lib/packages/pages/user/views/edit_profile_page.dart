@@ -21,7 +21,7 @@ class _UserEditProfileState extends State<UserEditProfile> {
     lastName: 'Ali',
     email: 'areen@gmail.com',
     phoneNumber: '123-456-1234',
-    speciality: 'Software',
+    specialty: 'Software',
     experience: 'experience experience experience',
     skills: 'skills skills skills skills skills skills skills',
     imageUrl: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
@@ -50,15 +50,15 @@ class _UserEditProfileState extends State<UserEditProfile> {
               const SizedBox(height: 24),
               TextFieldWidget(
                 label: KeyLang.specialty.tr(),
-                text: user.speciality,
+                text: user.specialty!,
                 onChanged: (specialty) {
-                  user.speciality = specialty;
+                  user.specialty = specialty;
                 },
               ),
               const SizedBox(height: 24),
               TextFieldWidget(
                 label: KeyLang.skills.tr(),
-                text: user.skills,
+                text: user.skills!,
                 onChanged: (skills) {
                   user.skills = skills;
                 },
@@ -66,7 +66,7 @@ class _UserEditProfileState extends State<UserEditProfile> {
               const SizedBox(height: 24),
               TextFieldWidget(
                   label: KeyLang.experience.tr(),
-                  text: user.experience,
+                  text: user.experience!,
                   maxLines: 5,
                   onChanged: (about) {
                     user.experience = about;

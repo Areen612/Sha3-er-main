@@ -1,4 +1,4 @@
-#Wed Sep 07 18:10:33 EEST 2022
+#Tue Sep 20 15:39:28 EEST 2022
 base.2=C\:\\Users\\chick61\\source\\repos\\FlutterProjects\\Sha3-er-main\\Sha3-er-main\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes3.dex
 path.2=classes3.dex
 base.1=C\:\\Users\\chick61\\source\\repos\\FlutterProjects\\Sha3-er-main\\Sha3-er-main\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes2.dex

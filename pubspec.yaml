@@ -46,8 +46,6 @@ dependencies:
   cached_network_image: ^3.2.0
   # A collection of loading indicators animated with flutter.
   flutter_spinkit: ^5.1.0
-  # A Flutter package for easy implementation of curved navigation bar
-  curved_navigation_bar: ^1.0.3 
   # persistent_bottom_nav_bar_v2: ^4.2.4
   custom_navigation_bar: ^0.8.2
   # page view indicators
@@ -60,6 +58,7 @@ dependencies:
   firebase_core: ^1.21.0
   firebase_auth: ^3.6.4
   cloud_firestore: ^3.4.5
+  firebase_storage: ^10.3.8
   # Toast
   fluttertoast: ^8.0.8
   #toggle_switch: ^2.0.1
@@ -70,6 +69,13 @@ dependencies:
   sticky_headers: "^0.1.8"
   # switch animation between light and dark theme
   animated_theme_switcher: ^2.0.1-nullsafety.0
+  # getx
+  get: ^4.6.5
+  # rating bar
+  flutter_rating_bar: ^4.0.1
+  # image picker 
+  image_picker: ^0.8.5+3
+
  
   
 

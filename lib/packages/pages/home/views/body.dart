@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:shagher/packages/components/nav_bar/nav_bar.dart';
+import 'package:shagher/packages/components/nav_bar/user_nav_bar.dart';
 import 'package:shagher/packages/pages/Posts/job/body.dart';
 import 'package:shagher/packages/pages/Posts/traing/views/body.dart';
 import 'package:shagher/packages/pages/home/components/app_bar_home.dart';
-import '../components/drawer/body_drawer.dart';
+import 'package:shagher/packages/pages/settings/views/body.dart';
 
-class HomeWidget extends StatefulWidget {
-  static const String id = "HomeWidget";
-  const HomeWidget({Key? key}) : super(key: key);
+class UserLandScape extends StatefulWidget {
+  static const String id = "UserLandScape";
+  const UserLandScape({Key? key}) : super(key: key);
 
   @override
-  State<HomeWidget> createState() => _HomeWidgetState();
+  State<UserLandScape> createState() => _UserLandScapeState();
 }
 
-class _HomeWidgetState extends State<HomeWidget> {
-  int _selectedIndex = 1;
-  static const List<Widget> _widgetOptions = <Widget>[
-    JobsWidget(),
-    Center(child: Text('Index 0: Home')),
-    TrainingWidget()
+class _UserLandScapeState extends State<UserLandScape> {
+  int _selectedIndex = 0;
+  static final List<Widget> _widgetOptions = <Widget>[
+    const Center(child: Text('home')),
+    const JobsWidget(),
+    const TrainingWidget(),
+    const SettingsWidget()
   ];
 
   @override
@@ -26,8 +27,8 @@ class _HomeWidgetState extends State<HomeWidget> {
     return Scaffold(
       appBar: const AppBarHome(),
       body: _widgetOptions[_selectedIndex],
-      drawer: const DrawerBody(),
-      bottomNavigationBar: NavBar(
+      //drawer: const DrawerBody(),
+      bottomNavigationBar: UserNavBar(
         selectedIndex: _selectedIndex,
         onClick: (calledIndex) {
           setState(() {

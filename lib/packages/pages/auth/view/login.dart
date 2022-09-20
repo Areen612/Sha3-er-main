@@ -93,5 +93,5 @@ class LoginWidget extends StatelessWidget {
 
   // * Navigator Home Page
   void _navHome(BuildContext context) =>
-      Navigator.pushNamed(context, HomeWidget.id);
+      Navigator.pushNamed(context, UserLandScape.id);
 }

@@ -40,7 +40,7 @@ class ElevatedBtn extends StatelessWidget {
           style: TextStyle(
               color: AppColors.primarybg,
               fontFamily: 'Outfit',
-              fontSize: 16.sp,
+              fontSize: 14.sp,
               fontStyle: FontStyle.normal),
         ) //tr(),
         );

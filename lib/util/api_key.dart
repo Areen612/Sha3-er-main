@@ -14,6 +14,8 @@ class KeyApi {
   static const String commercialNumber = 'commercialNumber';
   static const String commercialName = 'commercialName';
   static const String posts = 'posts';
+  static const String imageUrl = 'imageUrl';
+  static const String cvUrl = 'cvUrl';
   // * posts
   static const String title = 'title';
   static const String requirements = 'requirements';
@@ -27,7 +29,8 @@ class KeyApi {
   static const String birthDate = 'birthDate';
   static const String experience = 'experience';
   static const String skills = 'skills';
-  static const String mobileNumber = 'mobileNumber';
+  static const String phoneNumber = 'mobileNumber';
   // * user
+  static const String id = "id";
   static const String user = 'user';
 }

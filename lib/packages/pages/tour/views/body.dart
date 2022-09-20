@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shagher/language/generated/key_lang.dart';
 import 'package:shagher/packages/components/space/size_box_height.dart';
+import 'package:shagher/packages/pages/home/views/body.dart';
 import 'package:shagher/packages/pages/tour/componets/tour_card.dart';
 import 'package:shagher/themes/app_colors.dart';
 import 'package:shagher/util/path_images.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../components/button/elevated_btn.dart';
-import '../../home/views/body.dart';
 
 class TourWidget extends StatefulWidget {
   static const id = 'TourWidget';
@@ -37,20 +37,23 @@ class _TourWidgetState extends State<TourWidget> {
                 //todo texts and tr()
                 children: <Widget>[
                   TourCard(
-                      image: PathImages.tourTwo,
-                      title: KeyLang.tourHeaderOne.tr(),
-                      subtitle:
-                          'Lorem ipsum dolor sit amet, consectetur\nadipiscing elit, sed do eiusmod tempor\nincididunt ut labore et dolore magna aliqua. '),
+                    image: PathImages.tourTwo,
+                    title: KeyLang.tourHeaderOne.tr(),
+                    // subtitle:
+                    //     'Lorem ipsum dolor sit amet, consectetur\nadipiscing elit, sed do eiusmod tempor\nincididunt ut labore et dolore magna aliqua. '
+                  ),
                   TourCard(
-                      image: PathImages.tourFive,
-                      title: KeyLang.tourHeaderTwo.tr(),
-                      subtitle:
-                          'Lorem ipsum dolor sit amet, consectetur\nadipiscing elit, sed do eiusmod tempor\nincididunt ut labore et dolore magna aliqua. '),
+                    image: PathImages.tourFive,
+                    title: KeyLang.tourHeaderTwo.tr(),
+                    // subtitle:
+                    //     'Lorem ipsum dolor sit amet, consectetur\nadipiscing elit, sed do eiusmod tempor\nincididunt ut labore et dolore magna aliqua. '
+                  ),
                   TourCard(
-                      image: PathImages.tourFour,
-                      title: KeyLang.tourHeaderThree.tr(),
-                      subtitle:
-                          'Lorem ipsum dolor sit amet, consectetur\nadipiscing elit, sed do eiusmod tempor\nincididunt ut labore et dolore magna aliqua. '),
+                    image: PathImages.tourFour,
+                    title: KeyLang.tourHeaderThree.tr(),
+                    // subtitle:
+                    //     'Lorem ipsum dolor sit amet, consectetur\nadipiscing elit, sed do eiusmod tempor\nincididunt ut labore et dolore magna aliqua. '
+                  ),
                 ],
               ),
             ),
@@ -69,7 +72,7 @@ class _TourWidgetState extends State<TourWidget> {
             ElevatedBtn(
               title: KeyLang.getStarted.tr(),
               onTap: () {
-                Navigator.pushReplacementNamed(context, HomeWidget.id);
+                Navigator.pushReplacementNamed(context, UserLandScape.id);
               },
               width: 300,
             ),

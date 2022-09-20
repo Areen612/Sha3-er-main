@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shagher/packages/pages/Posts/traing/views/paid.dart';
 import 'package:shagher/packages/pages/Posts/traing/views/unpaid.dart';
-import 'package:shagher/packages/pages/home/components/drawer/body_drawer.dart';
 import '../components/app_bar_training.dart';
 
 class TrainingWidget extends StatefulWidget {
@@ -32,7 +31,7 @@ class _TrainingPageState extends State<TrainingWidget> {
       child: Scaffold(
         appBar: const AppBarTraining(),
         body: TabBarView(children: _pages),
-        drawer: const DrawerBody(),
+        // drawer: const DrawerBody(),
       ),
     );
   }

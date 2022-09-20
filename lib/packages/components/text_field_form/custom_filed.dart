@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shagher/packages/pages/auth/components/field_decoration.dart';
-import 'package:shagher/service/theme/app_theme.dart';
-import 'package:shagher/util/path_icons.dart';
 import 'package:easy_localization/easy_localization.dart';
-
-import '../../../themes/app_colors.dart';
 
 class CustomField extends StatelessWidget {
   const CustomField(
@@ -21,8 +15,10 @@ class CustomField extends StatelessWidget {
       Widget? lable,
       String? labelText,
       String? helperText,
+      EdgeInsets? contentPadding,
       int? maxLines = 1,
       int? minLines = 1,
+      TextEditingController? controller,
       String? Function(String?)? onValidator,
       void Function(String?)? onSaved,
       void Function(String)? onChanged})
@@ -36,8 +32,10 @@ class CustomField extends StatelessWidget {
         _lable = lable,
         _labelText = labelText,
         _helperText = helperText,
+        _contentPadding = contentPadding,
         _maxLines = maxLines,
         _minLines = minLines,
+        _controller = controller,
         _onValidator = onValidator,
         _onSaved = onSaved,
         _onChanged = onChanged,
@@ -47,6 +45,7 @@ class CustomField extends StatelessWidget {
   final Color? _cursorColor;
   final TextInputType? _keyboardType;
   final bool _isObscureText;
+  final TextEditingController? _controller;
   final String? Function(String?)? _onValidator;
   final void Function(String?)? _onSaved;
   final void Function(String)? _onChanged;
@@ -60,6 +59,7 @@ class CustomField extends StatelessWidget {
   final int? _minLines;
   final String? _labelText;
   final String? _helperText;
+  final EdgeInsets? _contentPadding;
 
   @override
   Widget build(BuildContext context) {
@@ -71,6 +71,7 @@ class CustomField extends StatelessWidget {
       minLines: _minLines,
       obscureText: _isObscureText,
       textInputAction: TextInputAction.newline,
+      controller: _controller,
       validator: _onValidator,
       onSaved: _onSaved,
       onChanged: _onChanged,
@@ -81,6 +82,7 @@ class CustomField extends StatelessWidget {
         labelText: _labelText?.tr(),
         helperText: _helperText?.tr(),
         hint: _hint?.tr(),
+        contentPadding: _contentPadding,
       ),
       // decoration: InputDecoration(
       //   border: InputBorder.none,
@@ -89,11 +91,11 @@ class CustomField extends StatelessWidget {
       //   labelText: _labelText?.tr(),
       //   helperText: _helperText,
       //   prefixIcon: Padding(
-      //     padding: EdgeInsets.all(10.h),
+      //     padding: contentPadding.all(10.h),
       //     child: _pIcon,
       //   ),
       //   suffixIcon: Padding(
-      //     padding: EdgeInsets.all(10.h),
+      //     padding: contentPadding.all(10.h),
       //     child: _sIcon,
       //   ),
       //   enabledBorder: OutlineInputBorder(

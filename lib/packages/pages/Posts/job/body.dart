@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shagher/packages/pages/Posts/components/post_card.dart';
 import 'package:shagher/packages/pages/Posts/models/post.dart';
-import 'package:shagher/packages/pages/home/components/drawer/body_drawer.dart';
 
 class JobsWidget extends StatefulWidget {
   static const String id = "JobsWidget";
@@ -47,7 +46,7 @@ class _JobsPageState extends State<JobsWidget> {
             return PostCard(data: card[index]);
           },
         ),
-        drawer: const DrawerBody(),
+        //drawer: const DrawerBody(),
       ),
     );
   }

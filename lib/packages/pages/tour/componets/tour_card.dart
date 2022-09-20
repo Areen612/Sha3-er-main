@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shagher/packages/components/space/size_box_height.dart';
 import 'package:shagher/themes/app_colors.dart';
 
 class TourCard extends StatelessWidget {
@@ -7,7 +8,7 @@ class TourCard extends StatelessWidget {
       {Key? key,
       required String image,
       required String title,
-      required String subtitle})
+      String subtitle = ''})
       : _image = image,
         _title = title,
         _subTitle = subtitle,
@@ -54,14 +55,15 @@ class TourCard extends StatelessWidget {
                       //mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        const SBH(h: 16),
                         // TODO rich text
                         Text(
                           _title,
                           style: TextStyle(
                               fontFamily: 'Outfit',
                               color: const Color(0xFF0F1113),
-                              fontSize: 15.sp,
-                              fontWeight: FontWeight.w600),
+                              fontSize: 20.sp,
+                              fontWeight: FontWeight.bold),
                           textAlign: TextAlign.left, //* you added this
                         ),
                         Text(

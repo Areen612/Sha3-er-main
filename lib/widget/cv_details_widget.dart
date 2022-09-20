@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shagher/packages/pages/auth/model/user_auth.dart';
 
-class CvDetailsWidget extends StatelessWidget {
-  const CvDetailsWidget(
+class DetailsWidget extends StatelessWidget {
+  const DetailsWidget(
       {Key? key, ModelUserAuth? user, String? title, String? description})
       : _user = user,
         _title = title,

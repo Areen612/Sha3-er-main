@@ -5,8 +5,11 @@ import 'package:shagher/packages/pages/Posts/models/post.dart';
 import 'package:shagher/util/path_images.dart';
 
 class PostCard extends StatelessWidget {
-  const PostCard({Key? key, required this.data}) : super(key: key);
+  const PostCard({Key? key, required this.data, bool isComp = false})
+      : _isComp = isComp,
+        super(key: key);
   final ModelPost data;
+  final bool _isComp;
 
   @override
   Widget build(BuildContext context) {
@@ -18,19 +21,26 @@ class PostCard extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               const SBH(h: 10),
-              ListTile(
-                leading: const Hero(
-                    tag: 'tag_card',
-                    child: Image(image: AssetImage(PathImages.profileImage))),
-                title: Text(data.title),
-                //subtitle: Text(_company.companyName),
-              ),
+              !_isComp
+                  ? ListTile(
+                      leading: const Hero(
+                          tag: 'tag_card',
+                          child: Image(
+                              image: AssetImage(PathImages.profileImage))),
+
+                      title: Text(data.title),
+                      //subtitle: Text(_company.companyName),
+                    )
+                  : ListTile(
+                      title: Text(data.title),
+                      //subtitle: Text(_company.companyName),
+                    ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
                   TextButton(
                     child: const Text('view post'),
-                    onPressed: () => _gotoDetailsPage(context),
+                    onPressed: () => _gotoDetailsPage(context, _isComp),
                   ),
                   const SizedBox(width: 8),
                 ],
@@ -43,7 +53,7 @@ class PostCard extends StatelessWidget {
   }
 }
 
-void _gotoDetailsPage(BuildContext context) {
+void _gotoDetailsPage(BuildContext context, bool isComp) {
   Navigator.of(context).push(MaterialPageRoute<void>(
     builder: (BuildContext context) => Scaffold(
       appBar: AppBar(),
@@ -51,10 +61,12 @@ void _gotoDetailsPage(BuildContext context) {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: const <Widget>[
+          children: <Widget>[
             Expanded(
               flex: 2,
-              child: PostCardDetails(),
+              child: PostCardDetails(
+                isComp: isComp,
+              ),
             ),
           ],
         ),

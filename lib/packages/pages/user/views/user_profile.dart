@@ -8,7 +8,7 @@ import 'package:shagher/packages/pages/home/components/app_bar_home.dart';
 import 'package:shagher/packages/pages/user/views/edit_profile_page.dart';
 import 'package:shagher/themes/app_colors.dart';
 import 'package:shagher/widget/cv_details_widget.dart';
-import 'package:shagher/widget/name_widget.dart';
+import 'package:shagher/widget/name_widget_user.dart';
 import 'package:shagher/widget/numbers_widget.dart';
 
 class UserProfile extends StatefulWidget {
@@ -27,10 +27,11 @@ class _UserProfileState extends State<UserProfile> {
     firstName: 'Areen',
     lastName: 'Ali',
     email: 'areen@gmail.com',
-    speciality: 'Software Engineer',
+    specialty: 'Software Engineer',
     phoneNumber: '123-456-1234',
-    experience: 'experience experience experience',
-    skills: 'skills skills skills skills skills skills skills',
+    experience:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
+    skills: 'skill1 skill2 skill3 skill4\n skill5 skill6 skill7',
     imageUrl: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
   );
   @override
@@ -64,7 +65,7 @@ class _UserProfileState extends State<UserProfile> {
                 width: 128,
               ),
               const SizedBox(height: 24),
-              NameWidget(user: user),
+              NameWidgetUser(user: user),
               const SizedBox(height: 24),
               const Divider(),
               const SizedBox(height: 24),
@@ -72,13 +73,13 @@ class _UserProfileState extends State<UserProfile> {
               const SizedBox(height: 24),
               const Divider(),
               const SizedBox(height: 48),
-              CvDetailsWidget(
+              DetailsWidget(
                 user: user,
                 title: KeyLang.experience.tr(),
                 description: user.experience,
               ),
               const SizedBox(height: 48),
-              CvDetailsWidget(
+              DetailsWidget(
                 user: user,
                 title: KeyLang.skills.tr(),
                 description: user.skills,

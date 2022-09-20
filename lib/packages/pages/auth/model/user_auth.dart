@@ -1,26 +1,31 @@
+import 'package:shagher/util/api_key.dart';
+
 class ModelUserAuth {
-  String firstName;
-  String lastName;
-  String email;
-  String password;
+  int? id;
+  String? firstName;
+  String? lastName;
+  String? email;
+  String? password;
   // * cv
-  String speciality;
+  String? specialty;
   DateTime? birthDate;
-  String experience;
-  String skills;
-  String phoneNumber;
-  String country;
-  String city;
-  String imageUrl;
+  String? experience;
+  String? skills;
+  String? phoneNumber;
+  String? country;
+  String? city;
+  String? imageUrl;
+  String? cvUrl;
   // String creator;
 // List<ModelCv>? cv;
 
   ModelUserAuth({
+    this.id,
     this.firstName = '',
     this.lastName = '',
     this.email = '',
     this.password = '',
-    this.speciality = '',
+    this.specialty = '',
     this.birthDate,
     this.experience = '',
     this.skills = '',
@@ -28,6 +33,7 @@ class ModelUserAuth {
     this.country = '',
     this.city = '',
     this.imageUrl = '',
+    this.cvUrl = '',
   });
   setFname(String? firstName) {
     this.firstName = firstName ?? '';
@@ -54,5 +60,38 @@ class ModelUserAuth {
     lastName = fullName[1];
   }
 
-  String getFullName() => firstName + ' ' + lastName;
+  String getFullName() => firstName! + ' ' + lastName!;
+
+  ModelUserAuth.fromJson(Map<String, dynamic> json) {
+    id = json[KeyApi.id];
+    firstName = json[KeyApi.firstName];
+    lastName = json[KeyApi.lastName];
+    password = json[KeyApi.password];
+    email = json[KeyApi.email];
+    specialty = json[KeyApi.specialty];
+    birthDate = json[KeyApi.birthDate];
+    experience = json[KeyApi.experience];
+    skills = json[KeyApi.skills];
+    phoneNumber = json[KeyApi.phoneNumber];
+    country = json[KeyApi.country];
+    city = json[KeyApi.city];
+    imageUrl = json[KeyApi.imageUrl];
+    cvUrl = json[KeyApi.cvUrl];
+  }
+
+  Map<String, dynamic>? toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data[KeyApi.firstName] = firstName;
+    data[KeyApi.lastName] = lastName;
+    data[KeyApi.password] = password;
+    data[KeyApi.email] = email;
+    data[KeyApi.phoneNumber] = phoneNumber;
+    data[KeyApi.country] = country;
+    data[KeyApi.city] = city;
+    data[KeyApi.skills] = skills;
+    data[KeyApi.experience] = experience;
+    data[KeyApi.imageUrl] = imageUrl;
+    data[KeyApi.cvUrl] = cvUrl;
+    return null;
+  }
 }

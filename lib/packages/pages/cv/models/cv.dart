@@ -30,7 +30,7 @@ class ModelCv {
     birthDate = json[KeyApi.birthDate];
     experience = json[KeyApi.experience];
     skills = json[KeyApi.skills];
-    mobileNumber = json[KeyApi.mobileNumber];
+    mobileNumber = json[KeyApi.phoneNumber];
     email = json[KeyApi.email];
     country = json[KeyApi.country];
     city = json[KeyApi.city];
@@ -44,7 +44,7 @@ class ModelCv {
     data[KeyApi.birthDate] = birthDate;
     data[KeyApi.experience] = experience;
     data[KeyApi.skills] = skills;
-    data[KeyApi.mobileNumber] = mobileNumber;
+    data[KeyApi.phoneNumber] = mobileNumber;
     data[KeyApi.email] = email;
     data[KeyApi.country] = country;
     data[KeyApi.city] = city;

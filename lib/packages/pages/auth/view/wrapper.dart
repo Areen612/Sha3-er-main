@@ -16,7 +16,7 @@ class Wrapper extends StatelessWidget {
           return const LoadingPage();
         }
         if (snapshot.hasData) {
-          return const HomeWidget();
+          return const UserLandScape();
         } else {
           return const LoginWidget();
         }

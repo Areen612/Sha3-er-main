@@ -29,7 +29,7 @@ class UserAuthService extends ChangeNotifier {
       setLoading = true;
       UserCredential _authResult =
           await _firebaseAuth.createUserWithEmailAndPassword(
-              email: data.email, password: data.password);
+              email: data.email!, password: data.password!);
       late User _user;
       if (_authResult.user?.uid.isNotEmpty ?? false) {
         _user = _authResult.user!;
@@ -57,8 +57,8 @@ class UserAuthService extends ChangeNotifier {
       setLoading = true;
       UserCredential _authResult =
           await _firebaseAuth.signInWithEmailAndPassword(
-        email: data.email,
-        password: data.password,
+        email: data.email!,
+        password: data.password!,
       );
 
       late User _user;
@@ -84,7 +84,7 @@ class UserAuthService extends ChangeNotifier {
   Future<bool> resetPassword({required ModelUserAuth data}) async {
     try {
       setLoading = false;
-      await _firebaseAuth.sendPasswordResetEmail(email: data.email);
+      await _firebaseAuth.sendPasswordResetEmail(email: data.email!);
       setLoading = false;
       return true;
     } on SocketException {

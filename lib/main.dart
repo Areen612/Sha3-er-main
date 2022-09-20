@@ -14,6 +14,7 @@ void main() async {
       ? ConfigLanguage.arLocale
       : ConfigLanguage.enLocale;
   runApp(
+    //GetMaterialApp(
     EasyLocalization(
       supportedLocales: const [
         ConfigLanguage.arLocale,
@@ -25,6 +26,7 @@ void main() async {
       child: const MyApp(),
     ),
   );
+  //);
 }
 
 //todo upload apptheme and basic config file

@@ -1,14 +1,10 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shagher/language/generated/key_lang.dart';
 import 'package:shagher/service/theme/app_theme.dart';
 import 'package:shagher/themes/app_colors.dart';
-import 'package:shagher/util/path_icons.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 InputDecoration fieldDecoration(BuildContext context,
-    {labelText, hint, pIcon, sIcon, helperText}) {
+    {labelText, hint, pIcon, sIcon, helperText, contentPadding}) {
   return InputDecoration(
     border: InputBorder.none,
     hintText: hint,
@@ -16,7 +12,7 @@ InputDecoration fieldDecoration(BuildContext context,
     helperText: helperText,
     helperMaxLines: 3,
     errorMaxLines: 3,
-    // helperStyle: TextStyle(overflow: TextOverflow.),
+    contentPadding: contentPadding,
     prefixIcon: Padding(
       padding: EdgeInsets.all(10.h),
       child: pIcon,
